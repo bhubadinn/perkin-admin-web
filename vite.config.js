@@ -28,7 +28,7 @@ export default defineConfig({
     open: true, // For development server
   },
   preview: {
-    port: 3031,
+    port: 3032,
     open: true, // For preview server
   },
 });

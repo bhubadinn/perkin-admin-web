@@ -207,6 +207,7 @@ const Sidebar = ({open, onToggle, collapsed, onCollapsedToggle}) => {
     return children?.some((child) => isActive(child.path));
   };
 
+  // eslint-disable-next-line no-unused-vars
   const renderMenuItem = (item, level = 0) => {
     const hasChildren = item.children && item.children.length > 0;
     const isExpanded = expandedMenus[item.key];
