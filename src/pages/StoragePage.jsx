@@ -40,7 +40,7 @@ import {
 } from "@mui/icons-material";
 import {motion} from "framer-motion";
 
-export const LawPage = () => {
+export const StoragePage = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -50,7 +50,7 @@ export const LawPage = () => {
 
   if (loading) {
     return (
-      <Layout title="Law">
+      <Layout title="Storage">
         <Container maxWidth="xl" sx={{py: 3}}>
           <PageSkeleton title={true} cards={4} stats={true} />
         </Container>
@@ -59,7 +59,7 @@ export const LawPage = () => {
   }
 
   return (
-    <Layout title="Law">
+    <Layout title="Storage">
       <Container maxWidth="xl" sx={{py: 3}}>
         <motion.div
           initial={{opacity: 0, y: 20}}
@@ -67,11 +67,10 @@ export const LawPage = () => {
           transition={{duration: 0.6}}
         >
           <Typography variant="h4" fontWeight="bold" gutterBottom>
-            Law Listing Center
+            Comming soon
           </Typography>
           <Typography variant="body1" color="text.secondary" sx={{mb: 4}}>
-            The most comprehensive occupation based law and relations database
-            in the country
+            ...
           </Typography>
 
           {/* <Grid container spacing={3}>
@@ -150,18 +149,18 @@ export const LawPage = () => {
             </Grid>
           </Grid> */}
 
-          <Box
+          {/* <Box
             sx={{
               width: "100%",
               height: "80vh", // Adjust height as needed
               border: "1px solid #ccc",
               borderRadius: 2,
               overflow: "hidden",
-              marginBottom: "3vh"
+              marginBottom: "3vh",
             }}
           >
             <iframe
-              src="https://docs.google.com/spreadsheets/d/1Jg2MJ3tNbLrt80R5UOvBGDTIQWUkxcIw49-bGnvZDqk/edit?usp=sharing"
+              src="https://drive.google.com/drive/folders/1XYcU3ahke-NrGdkz_DzNhrbBp6T-XF9X?usp=sharing"
               title="External Web App"
               style={{
                 width: "100%",
@@ -169,27 +168,7 @@ export const LawPage = () => {
                 border: "none",
               }}
             />
-          </Box>
-
-          <Box
-            sx={{
-              width: "100%",
-              height: "80vh", // Adjust height as needed
-              border: "1px solid #ccc",
-              borderRadius: 2,
-              overflow: "hidden",
-            }}
-          >
-            <iframe
-              src="https://docs.google.com/spreadsheets/d/11nkHz_d6gfJc4JGpKwGsasQBGG9ppx7WJzRHOSrqCQQ/edit?usp=sharing"
-              title="External Web App"
-              style={{
-                width: "100%",
-                height: "100%",
-                border: "none",
-              }}
-            />
-          </Box>
+          </Box> */}
         </motion.div>
       </Container>
     </Layout>

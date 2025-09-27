@@ -20,6 +20,7 @@ import {ProfilePage} from "./pages/ProfilePage";
 import {NotificationsPage} from "./pages/NotificationsPage";
 import {OCRPage} from "./pages/OCRPage";
 import {SupportPage} from "./pages/SupportPage";
+import {StoragePage} from "./pages/StoragePage";
 import theme from "./theme/theme";
 
 function App() {
@@ -137,6 +138,15 @@ function App() {
                 element={
                   <ProtectedRoute>
                     <NotificationsPage />
+                  </ProtectedRoute>
+                }
+              />
+
+              <Route
+                path="/storage"
+                element={
+                  <ProtectedRoute>
+                    <StoragePage />
                   </ProtectedRoute>
                 }
               />

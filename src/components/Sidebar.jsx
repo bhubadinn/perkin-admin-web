@@ -53,6 +53,7 @@ import VisibilityIcon from "@mui/icons-material/Visibility";
 import {motion} from "framer-motion";
 
 import SupportIcon from "@mui/icons-material/Support";
+import FolderCopyIcon from "@mui/icons-material/FolderCopy";
 
 const DRAWER_WIDTH = 280;
 const COLLAPSED_WIDTH = 64;
@@ -166,6 +167,13 @@ const Sidebar = ({open, onToggle, collapsed, onCollapsedToggle}) => {
       title: "ระบบ OCR",
       icon: <VisibilityIcon />,
       path: "/ocr",
+      roles: ["admin", "user"],
+    },
+    {
+      key: "storage",
+      title: "ระบบจัดเก็บไฟล์",
+      icon: <FolderCopyIcon />,
+      path: "/storage",
       roles: ["admin", "user"],
     },
     // {
