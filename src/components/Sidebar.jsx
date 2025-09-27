@@ -45,7 +45,10 @@ import {
   ExpandLess,
   ExpandMore,
 } from "@mui/icons-material";
-// eslint-disable-next-line no-unused-vars
+
+import GavelIcon from "@mui/icons-material/Gavel";
+import SavedSearchIcon from "@mui/icons-material/SavedSearch";
+
 import {motion} from "framer-motion";
 
 const DRAWER_WIDTH = 280;
@@ -126,18 +129,32 @@ const Sidebar = ({open, onToggle, collapsed, onCollapsedToggle}) => {
         },
       ],
     },
+    // {
+    //   key: "projects",
+    //   title: "Projects",
+    //   icon: <AssignmentIcon />,
+    //   path: "/projects",
+    //   roles: ["admin", "user"],
+    // },
     {
-      key: "projects",
-      title: "Projects",
-      icon: <AssignmentIcon />,
-      path: "/projects",
+      key: "audit",
+      title: "Audit",
+      icon: <SavedSearchIcon />,
+      path: "/audit",
       roles: ["admin", "user"],
     },
+    // {
+    //   key: "security",
+    //   title: "Security",
+    //   icon: <SecurityIcon />,
+    //   path: "/security",
+    //   roles: ["admin"],
+    // },
     {
-      key: "security",
-      title: "Security",
-      icon: <SecurityIcon />,
-      path: "/security",
+      key: "law",
+      title: "Law",
+      icon: <GavelIcon />,
+      path: "/law",
       roles: ["admin"],
     },
     {

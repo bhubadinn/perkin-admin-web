@@ -1,6 +1,9 @@
+// /src/components/Dashboard.jsx
+
 import React from "react";
 import Layout from "./Layout";
-import { useAuth } from "../hooks/useAuth";
+import LogStream from "./LogStream";
+import {useAuth} from "../hooks/useAuth";
 import {
   Container,
   Grid,
@@ -30,11 +33,11 @@ import {
   Analytics,
   Settings,
 } from "@mui/icons-material";
-// eslint-disable-next-line no-unused-vars
-import { motion } from "framer-motion";
+
+import {motion} from "framer-motion";
 
 const Dashboard = () => {
-  const { user } = useAuth();
+  const {user} = useAuth();
 
   const stats = [
     {
@@ -68,20 +71,20 @@ const Dashboard = () => {
   ];
 
   const recentActivities = [
-    { action: "New user registered", time: "2 minutes ago", type: "success" },
-    { action: "System backup completed", time: "1 hour ago", type: "info" },
-    { action: "Payment processed", time: "2 hours ago", type: "success" },
-    { action: "Database maintenance", time: "4 hours ago", type: "warning" },
+    {action: "New user registered", time: "2 minutes ago", type: "success"},
+    {action: "System backup completed", time: "1 hour ago", type: "info"},
+    {action: "Payment processed", time: "2 hours ago", type: "success"},
+    {action: "Database maintenance", time: "4 hours ago", type: "warning"},
   ];
 
   return (
     <Layout title="Dashboard">
-      <Container maxWidth="xl" sx={{ py: 3 }}>
+      <Container maxWidth="xl" sx={{py: 3}}>
         {/* Welcome Section */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
+        {/* <motion.div
+          initial={{opacity: 0, y: 20}}
+          animate={{opacity: 1, y: 0}}
+          transition={{duration: 0.6}}
         >
           <Paper
             elevation={0}
@@ -95,7 +98,7 @@ const Dashboard = () => {
               overflow: "hidden",
             }}
           >
-            <Box sx={{ position: "relative", zIndex: 1 }}>
+            <Box sx={{position: "relative", zIndex: 1}}>
               <Typography
                 variant="h4"
                 fontWeight="bold"
@@ -106,7 +109,7 @@ const Dashboard = () => {
               </Typography>
               <Typography
                 variant="h6"
-                sx={{ opacity: 0.8, mb: 2, color: "#000000" }}
+                sx={{opacity: 0.8, mb: 2, color: "#000000"}}
               >
                 Here's what's happening with your admin dashboard today.
               </Typography>
@@ -118,10 +121,10 @@ const Dashboard = () => {
                 }}
                 icon={<Star />}
               />
-            </Box>
+            </Box> */}
 
-            {/* Decorative elements */}
-            <Box
+        {/* Decorative elements */}
+        {/* <Box
               sx={{
                 position: "absolute",
                 top: -50,
@@ -144,21 +147,23 @@ const Dashboard = () => {
               }}
             />
           </Paper>
-        </motion.div>
+        </motion.div> */}
+
+        <LogStream />
 
         {/* Stats Grid */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
+          initial={{opacity: 0, y: 20}}
+          animate={{opacity: 1, y: 0}}
+          transition={{duration: 0.6, delay: 0.2}}
         >
-          <Grid container spacing={3} sx={{ mb: 4 }}>
+          <Grid container spacing={3} sx={{mb: 4}}>
             {stats.map((stat, index) => (
               <Grid item xs={12} sm={6} md={3} key={index}>
                 <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: 0.3 + index * 0.1 }}
+                  initial={{opacity: 0, y: 20}}
+                  animate={{opacity: 1, y: 0}}
+                  transition={{duration: 0.5, delay: 0.3 + index * 0.1}}
                 >
                   <Card
                     elevation={2}
@@ -223,49 +228,60 @@ const Dashboard = () => {
           {/* User Information Card */}
           <Grid item xs={12} md={6}>
             <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
+              initial={{opacity: 0, x: -20}}
+              animate={{opacity: 1, x: 0}}
+              transition={{duration: 0.6, delay: 0.4}}
             >
-              <Card elevation={2} sx={{ borderRadius: 3, height: "100%" }}>
-                <CardContent sx={{ padding: 4 }}>
+              <Card elevation={2} sx={{borderRadius: 3, height: "100%"}}>
+                <CardContent sx={{padding: 4}}>
                   <Typography
                     variant="h6"
                     fontWeight="bold"
                     gutterBottom
                     color="#000000"
-                    sx={{ mb: 3 }}
+                    sx={{mb: 3}}
                   >
                     User Information
                   </Typography>
-                  <List sx={{ padding: 0 }}>
-                    <ListItem sx={{ paddingY: 2 }}>
+                  <List sx={{padding: 0}}>
+                    <ListItem sx={{paddingY: 2}}>
                       <ListItemIcon>
-                        <Avatar sx={{ width: 40, height: 40, bgcolor: "#A2D5C6" }}>
+                        <Avatar
+                          sx={{width: 40, height: 40, bgcolor: "#A2D5C6"}}
+                        >
                           {user?.name?.[0]}
                         </Avatar>
                       </ListItemIcon>
-                      <ListItemText 
-                        primary="Name" 
+                      <ListItemText
+                        primary="Name"
                         secondary={user?.name}
-                        sx={{ ml: 2 }}
+                        sx={{ml: 2}}
                       />
                     </ListItem>
-                    <ListItem sx={{ paddingY: 2 }}>
+                    <ListItem sx={{paddingY: 2}}>
                       <ListItemIcon>
-                        <Avatar sx={{ width: 40, height: 40, bgcolor: "#CFFFE2", color: "#000000" }}>
+                        <Avatar
+                          sx={{
+                            width: 40,
+                            height: 40,
+                            bgcolor: "#CFFFE2",
+                            color: "#000000",
+                          }}
+                        >
                           @
                         </Avatar>
                       </ListItemIcon>
-                      <ListItemText 
-                        primary="Email" 
+                      <ListItemText
+                        primary="Email"
                         secondary={user?.email}
-                        sx={{ ml: 2 }}
+                        sx={{ml: 2}}
                       />
                     </ListItem>
-                    <ListItem sx={{ paddingY: 2 }}>
+                    <ListItem sx={{paddingY: 2}}>
                       <ListItemIcon>
-                        <Avatar sx={{ width: 40, height: 40, bgcolor: "#A2D5C6" }}>
+                        <Avatar
+                          sx={{width: 40, height: 40, bgcolor: "#A2D5C6"}}
+                        >
                           <Star />
                         </Avatar>
                       </ListItemIcon>
@@ -279,16 +295,16 @@ const Dashboard = () => {
                               bgcolor: "#A2D5C6",
                               color: "#000000",
                               textTransform: "capitalize",
-                              mt: 0.5
+                              mt: 0.5,
                             }}
                           />
                         }
-                        sx={{ ml: 2 }}
+                        sx={{ml: 2}}
                       />
                     </ListItem>
                   </List>
                 </CardContent>
-                <CardActions sx={{ padding: 3, paddingTop: 0 }}>
+                <CardActions sx={{padding: 3, paddingTop: 0}}>
                   <Button
                     variant="outlined"
                     startIcon={<Settings />}
@@ -312,40 +328,44 @@ const Dashboard = () => {
           {/* Recent Activities */}
           <Grid item xs={12} md={6}>
             <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6, delay: 0.5 }}
+              initial={{opacity: 0, x: 20}}
+              animate={{opacity: 1, x: 0}}
+              transition={{duration: 0.6, delay: 0.5}}
             >
-              <Card elevation={2} sx={{ borderRadius: 3, height: "100%" }}>
-                <CardContent sx={{ padding: 4 }}>
+              <Card elevation={2} sx={{borderRadius: 3, height: "100%"}}>
+                <CardContent sx={{padding: 4}}>
                   <Typography
                     variant="h6"
                     fontWeight="bold"
                     gutterBottom
                     color="#000000"
-                    sx={{ mb: 3 }}
+                    sx={{mb: 3}}
                   >
                     Recent Activities
                   </Typography>
-                  <List sx={{ padding: 0 }}>
+                  <List sx={{padding: 0}}>
                     {recentActivities.map((activity, index) => (
                       <motion.div
                         key={index}
-                        initial={{ opacity: 0, x: 20 }}
-                        animate={{ opacity: 1, x: 0 }}
+                        initial={{opacity: 0, x: 20}}
+                        animate={{opacity: 1, x: 0}}
                         transition={{
                           duration: 0.4,
                           delay: 0.6 + index * 0.1,
                         }}
                       >
-                        <ListItem sx={{ paddingY: 2 }}>
+                        <ListItem sx={{paddingY: 2}}>
                           <ListItemIcon>
-                            <Avatar 
-                              sx={{ 
-                                width: 40, 
+                            <Avatar
+                              sx={{
+                                width: 40,
                                 height: 40,
-                                bgcolor: activity.type === "success" ? "#A2D5C6" :
-                                         activity.type === "warning" ? "#FFA726" : "#CFFFE2"
+                                bgcolor:
+                                  activity.type === "success"
+                                    ? "#A2D5C6"
+                                    : activity.type === "warning"
+                                    ? "#FFA726"
+                                    : "#CFFFE2",
                               }}
                             >
                               {activity.type === "success" && <CheckCircle />}
@@ -356,14 +376,14 @@ const Dashboard = () => {
                           <ListItemText
                             primary={activity.action}
                             secondary={activity.time}
-                            sx={{ ml: 2 }}
+                            sx={{ml: 2}}
                           />
                         </ListItem>
                       </motion.div>
                     ))}
                   </List>
                 </CardContent>
-                <CardActions sx={{ padding: 3, paddingTop: 0 }}>
+                <CardActions sx={{padding: 3, paddingTop: 0}}>
                   <Button
                     variant="outlined"
                     startIcon={<Analytics />}
@@ -387,9 +407,9 @@ const Dashboard = () => {
 
         {/* Quick Actions */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.8 }}
+          initial={{opacity: 0, y: 20}}
+          animate={{opacity: 1, y: 0}}
+          transition={{duration: 0.6, delay: 0.8}}
         >
           <Paper
             elevation={2}
@@ -400,15 +420,20 @@ const Dashboard = () => {
               background: "rgba(162, 213, 198, 0.05)",
             }}
           >
-            <Typography variant="h6" fontWeight="bold" gutterBottom sx={{ mb: 3 }}>
+            <Typography
+              variant="h6"
+              fontWeight="bold"
+              gutterBottom
+              sx={{mb: 3}}
+            >
               Quick Actions
             </Typography>
             <Grid container spacing={2}>
               {[
-                { label: "Add New User", action: "/users/add" },
-                { label: "View Analytics", action: "/analytics" },
-                { label: "Manage Projects", action: "/projects" },
-                { label: "System Settings", action: "/settings" },
+                {label: "Add New User", action: "/users/add"},
+                {label: "View Analytics", action: "/analytics"},
+                {label: "Manage Projects", action: "/projects"},
+                {label: "System Settings", action: "/settings"},
               ].map((item, index) => (
                 <Grid item xs={12} sm={6} md={3} key={index}>
                   <Button

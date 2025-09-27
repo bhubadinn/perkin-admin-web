@@ -38,7 +38,7 @@ import {
   Search as SearchIcon,
   FilterList as FilterIcon,
 } from "@mui/icons-material";
-// eslint-disable-next-line no-unused-vars
+
 import {motion} from "framer-motion";
 
 // Users Page
@@ -412,8 +412,215 @@ export const AnalyticsPage = () => {
   );
 };
 
-// Projects Page
-export const ProjectsPage = () => {
+// // Projects Page
+// export const ProjectsPage = () => {
+//   const [loading, setLoading] = useState(true);
+
+//   useEffect(() => {
+//     const timer = setTimeout(() => setLoading(false), 1800);
+//     return () => clearTimeout(timer);
+//   }, []);
+
+//   if (loading) {
+//     return (
+//       <Layout title="Projects">
+//         <PageSkeleton title={true} cards={6} stats={false} />
+//       </Layout>
+//     );
+//   }
+
+//   const mockProjects = [
+//     {
+//       id: 1,
+//       name: "Website Redesign",
+//       status: "In Progress",
+//       progress: 75,
+//       team: 4,
+//       deadline: "2024-02-15",
+//     },
+//     {
+//       id: 2,
+//       name: "Mobile App",
+//       status: "Planning",
+//       progress: 25,
+//       team: 6,
+//       deadline: "2024-03-01",
+//     },
+//     {
+//       id: 3,
+//       name: "Database Migration",
+//       status: "Completed",
+//       progress: 100,
+//       team: 3,
+//       deadline: "2024-01-30",
+//     },
+//     {
+//       id: 4,
+//       name: "Security Audit",
+//       status: "In Progress",
+//       progress: 60,
+//       team: 2,
+//       deadline: "2024-02-20",
+//     },
+//     {
+//       id: 5,
+//       name: "API Development",
+//       status: "Planning",
+//       progress: 10,
+//       team: 5,
+//       deadline: "2024-04-01",
+//     },
+//     {
+//       id: 6,
+//       name: "User Training",
+//       status: "On Hold",
+//       progress: 0,
+//       team: 2,
+//       deadline: "2024-03-15",
+//     },
+//   ];
+
+//   return (
+//     <Layout title="Projects">
+//       <Container maxWidth="xl" sx={{py: 3}}>
+//         <motion.div
+//           initial={{opacity: 0, y: 20}}
+//           animate={{opacity: 1, y: 0}}
+//           transition={{duration: 0.6}}
+//         >
+//           <Box
+//             sx={{
+//               display: "flex",
+//               justifyContent: "space-between",
+//               alignItems: "center",
+//               mb: 4,
+//             }}
+//           >
+//             <Box>
+//               <Typography variant="h4" fontWeight="bold" gutterBottom>
+//                 Projects
+//               </Typography>
+//               <Typography variant="body1" color="text.secondary">
+//                 Manage and track your project progress
+//               </Typography>
+//             </Box>
+//             <Button
+//               variant="contained"
+//               startIcon={<AddIcon />}
+//               sx={{
+//                 background: "linear-gradient(135deg, #A2D5C6 0%, #CFFFE2 100%)",
+//                 color: "#000000",
+//               }}
+//             >
+//               New Project
+//             </Button>
+//           </Box>
+
+//           <Grid container spacing={3}>
+//             {mockProjects.map((project, index) => (
+//               <Grid item xs={12} md={6} lg={4} key={project.id}>
+//                 <motion.div
+//                   initial={{opacity: 0, y: 20}}
+//                   animate={{opacity: 1, y: 0}}
+//                   transition={{duration: 0.4, delay: index * 0.1}}
+//                 >
+//                   <Card
+//                     elevation={2}
+//                     sx={{
+//                       borderRadius: 3,
+//                       "&:hover": {
+//                         transform: "translateY(-4px)",
+//                         boxShadow: "0 8px 25px rgba(0, 0, 0, 0.15)",
+//                       },
+//                       transition: "all 0.3s ease",
+//                     }}
+//                   >
+//                     <CardContent sx={{p: 3}}>
+//                       <Box
+//                         sx={{
+//                           display: "flex",
+//                           justifyContent: "space-between",
+//                           alignItems: "flex-start",
+//                           mb: 2,
+//                         }}
+//                       >
+//                         <Typography variant="h6" fontWeight="bold">
+//                           {project.name}
+//                         </Typography>
+//                         <Chip
+//                           label={project.status}
+//                           size="small"
+//                           color={
+//                             project.status === "Completed"
+//                               ? "success"
+//                               : project.status === "In Progress"
+//                               ? "primary"
+//                               : project.status === "On Hold"
+//                               ? "error"
+//                               : "warning"
+//                           }
+//                         />
+//                       </Box>
+
+//                       <Typography
+//                         variant="body2"
+//                         color="text.secondary"
+//                         sx={{mb: 3}}
+//                       >
+//                         Progress: {project.progress}%
+//                       </Typography>
+
+//                       <Box
+//                         sx={{
+//                           display: "flex",
+//                           justifyContent: "space-between",
+//                           alignItems: "center",
+//                           mb: 2,
+//                         }}
+//                       >
+//                         <Typography variant="body2">
+//                           Team: {project.team} members
+//                         </Typography>
+//                         <Typography variant="body2" color="text.secondary">
+//                           Due: {project.deadline}
+//                         </Typography>
+//                       </Box>
+
+//                       <Box sx={{display: "flex", gap: 1}}>
+//                         <Button size="small" variant="outlined">
+//                           View
+//                         </Button>
+//                         <Button size="small" variant="text">
+//                           Edit
+//                         </Button>
+//                       </Box>
+//                     </CardContent>
+//                   </Card>
+//                 </motion.div>
+//               </Grid>
+//             ))}
+//           </Grid>
+//         </motion.div>
+
+//         <Fab
+//           color="primary"
+//           sx={{
+//             position: "fixed",
+//             bottom: 24,
+//             right: 24,
+//             background: "linear-gradient(135deg, #A2D5C6 0%, #CFFFE2 100%)",
+//             color: "#000000",
+//           }}
+//         >
+//           <AddIcon />
+//         </Fab>
+//       </Container>
+//     </Layout>
+//   );
+// };
+
+// Audit Page
+export const AuditPage = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -423,7 +630,7 @@ export const ProjectsPage = () => {
 
   if (loading) {
     return (
-      <Layout title="Projects">
+      <Layout title="Audit">
         <PageSkeleton title={true} cards={6} stats={false} />
       </Layout>
     );
@@ -481,7 +688,7 @@ export const ProjectsPage = () => {
   ];
 
   return (
-    <Layout title="Projects">
+    <Layout title="Audit">
       <Container maxWidth="xl" sx={{py: 3}}>
         <motion.div
           initial={{opacity: 0, y: 20}}
@@ -498,7 +705,7 @@ export const ProjectsPage = () => {
           >
             <Box>
               <Typography variant="h4" fontWeight="bold" gutterBottom>
-                Projects
+                Q & A Audit
               </Typography>
               <Typography variant="body1" color="text.secondary">
                 Manage and track your project progress
@@ -865,7 +1072,120 @@ export const ProfilePage = () => {
 };
 
 // Security Page
-export const SecurityPage = () => {
+// export const SecurityPage = () => {
+//   const [loading, setLoading] = useState(true);
+
+//   useEffect(() => {
+//     const timer = setTimeout(() => setLoading(false), 1600);
+//     return () => clearTimeout(timer);
+//   }, []);
+
+//   if (loading) {
+//     return (
+//       <Layout title="Security">
+//         <Container maxWidth="lg" sx={{py: 3}}>
+//           <PageSkeleton title={true} cards={4} stats={true} />
+//         </Container>
+//       </Layout>
+//     );
+//   }
+
+//   return (
+//     <Layout title="Security">
+//       <Container maxWidth="lg" sx={{py: 3}}>
+//         <motion.div
+//           initial={{opacity: 0, y: 20}}
+//           animate={{opacity: 1, y: 0}}
+//           transition={{duration: 0.6}}
+//         >
+//           <Typography variant="h4" fontWeight="bold" gutterBottom>
+//             Security Center
+//           </Typography>
+//           <Typography variant="body1" color="text.secondary" sx={{mb: 4}}>
+//             Monitor and manage your system security settings
+//           </Typography>
+
+//           <Grid container spacing={3}>
+//             <Grid item xs={12} md={6}>
+//               <Card elevation={2} sx={{borderRadius: 3}}>
+//                 <CardContent sx={{p: 4}}>
+//                   <Typography variant="h6" fontWeight="bold" gutterBottom>
+//                     Password Security
+//                   </Typography>
+//                   <Typography
+//                     variant="body2"
+//                     color="text.secondary"
+//                     sx={{mb: 3}}
+//                   >
+//                     Last updated: 30 days ago
+//                   </Typography>
+//                   <Button
+//                     variant="outlined"
+//                     fullWidth
+//                     sx={{
+//                       borderColor: "#A2D5C6",
+//                       color: "#A2D5C6",
+//                       "&:hover": {
+//                         borderColor: "#A2D5C6",
+//                         backgroundColor: "rgba(162, 213, 198, 0.1)",
+//                       },
+//                     }}
+//                   >
+//                     Change Password
+//                   </Button>
+//                 </CardContent>
+//               </Card>
+//             </Grid>
+
+//             <Grid item xs={12} md={6}>
+//               <Card elevation={2} sx={{borderRadius: 3}}>
+//                 <CardContent sx={{p: 4}}>
+//                   <Typography variant="h6" fontWeight="bold" gutterBottom>
+//                     Two-Factor Authentication
+//                   </Typography>
+//                   <Typography
+//                     variant="body2"
+//                     color="text.secondary"
+//                     sx={{mb: 3}}
+//                   >
+//                     Status: Enabled
+//                   </Typography>
+//                   <Button
+//                     variant="contained"
+//                     fullWidth
+//                     sx={{
+//                       background:
+//                         "linear-gradient(135deg, #A2D5C6 0%, #CFFFE2 100%)",
+//                       color: "#000000",
+//                     }}
+//                   >
+//                     Manage 2FA
+//                   </Button>
+//                 </CardContent>
+//               </Card>
+//             </Grid>
+
+//             <Grid item xs={12}>
+//               <Card elevation={2} sx={{borderRadius: 3}}>
+//                 <CardContent sx={{p: 4}}>
+//                   <Typography variant="h6" fontWeight="bold" gutterBottom>
+//                     Recent Security Activity
+//                   </Typography>
+//                   <Box sx={{mt: 2}}>
+//                     <Typography variant="body2" color="text.secondary">
+//                       No suspicious activity detected in the last 30 days.
+//                     </Typography>
+//                   </Box>
+//                 </CardContent>
+//               </Card>
+//             </Grid>
+//           </Grid>
+//         </motion.div>
+//       </Container>
+//     </Layout>
+//   );
+// };
+export const LawPage = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -875,7 +1195,7 @@ export const SecurityPage = () => {
 
   if (loading) {
     return (
-      <Layout title="Security">
+      <Layout title="Law">
         <Container maxWidth="lg" sx={{py: 3}}>
           <PageSkeleton title={true} cards={4} stats={true} />
         </Container>
@@ -884,7 +1204,7 @@ export const SecurityPage = () => {
   }
 
   return (
-    <Layout title="Security">
+    <Layout title="Law">
       <Container maxWidth="lg" sx={{py: 3}}>
         <motion.div
           initial={{opacity: 0, y: 20}}
@@ -892,10 +1212,10 @@ export const SecurityPage = () => {
           transition={{duration: 0.6}}
         >
           <Typography variant="h4" fontWeight="bold" gutterBottom>
-            Security Center
+            Law Listing Center
           </Typography>
           <Typography variant="body1" color="text.secondary" sx={{mb: 4}}>
-            Monitor and manage your system security settings
+            Monitor and manage your law listing
           </Typography>
 
           <Grid container spacing={3}>

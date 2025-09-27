@@ -32,7 +32,7 @@ import {
   Security,
   CheckCircle,
 } from "@mui/icons-material";
-// eslint-disable-next-line no-unused-vars
+ 
 import {motion} from "framer-motion";
 
 const AuthPage = () => {

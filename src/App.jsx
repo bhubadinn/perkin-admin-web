@@ -14,12 +14,14 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import {
   UsersPage,
   AnalyticsPage,
-  ProjectsPage,
+  // ProjectsPage,
+  AuditPage,
+  // Security,
+  LawPage,
   SettingsPage,
   ProfilePage,
 } from "./components/SamplePages";
 import theme from "./theme/theme";
-import "./App.css";
 
 function App() {
   return (
@@ -86,20 +88,38 @@ function App() {
                 }
               />
 
-              <Route
+              {/* <Route
                 path="/projects"
                 element={
                   <ProtectedRoute>
                     <ProjectsPage />
                   </ProtectedRoute>
                 }
-              />
+              /> */}
 
               <Route
+                path="/audit"
+                element={
+                  <ProtectedRoute>
+                    <AuditPage />
+                  </ProtectedRoute>
+                }
+              />
+
+              {/* <Route
                 path="/security"
                 element={
                   <ProtectedRoute>
                     <SettingsPage />
+                  </ProtectedRoute>
+                }
+              /> */}
+
+              <Route
+                path="/law"
+                element={
+                  <ProtectedRoute>
+                    <LawPage />
                   </ProtectedRoute>
                 }
               />

@@ -1,11 +1,10 @@
 import {createTheme} from "@mui/material/styles";
 
-// Custom color palette
 const colors = {
   black: "#000000",
-  lightGreen: "#CFFFE2", 
+  lightGreen: "#CFFFE2",
   teal: "#A2D5C6",
-  lightGray: "#F6F6F6"
+  lightGray: "#F6F6F6",
 };
 
 const theme = createTheme({
@@ -98,16 +97,10 @@ const theme = createTheme({
       lineHeight: 1.5,
       color: colors.black,
     },
-    body1: {
-      color: colors.black,
-    },
-    body2: {
-      color: "#666666",
-    },
+    body1: {color: colors.black},
+    body2: {color: "#666666"},
   },
-  shape: {
-    borderRadius: 12,
-  },
+  shape: {borderRadius: 12},
   components: {
     MuiButton: {
       styleOverrides: {
@@ -163,9 +156,7 @@ const theme = createTheme({
             borderRadius: 8,
             transition: "all 0.3s ease",
             "&:hover": {
-              "& .MuiOutlinedInput-notchedOutline": {
-                borderColor: colors.teal,
-              },
+              "& .MuiOutlinedInput-notchedOutline": {borderColor: colors.teal},
             },
             "&.Mui-focused": {
               "& .MuiOutlinedInput-notchedOutline": {
@@ -177,21 +168,8 @@ const theme = createTheme({
         },
       },
     },
-    MuiChip: {
-      styleOverrides: {
-        root: {
-          borderRadius: 8,
-          fontWeight: 500,
-        },
-      },
-    },
-    MuiAvatar: {
-      styleOverrides: {
-        root: {
-          fontWeight: 600,
-        },
-      },
-    },
+    MuiChip: {styleOverrides: {root: {borderRadius: 8, fontWeight: 500}}},
+    MuiAvatar: {styleOverrides: {root: {fontWeight: 600}}},
     MuiAppBar: {
       styleOverrides: {
         root: {
@@ -200,12 +178,43 @@ const theme = createTheme({
         },
       },
     },
-    MuiPaper: {
-      styleOverrides: {
-        root: {
-          backgroundImage: "none",
-        },
-      },
+    MuiPaper: {styleOverrides: {root: {backgroundImage: "none"}}},
+    MuiCssBaseline: {
+      styleOverrides: `
+        :root {
+          --primary: ${colors.teal};
+          --secondary: ${colors.lightGreen};
+          --background-light: ${colors.lightGray};
+          --background-dark: ${colors.black};
+          --text-primary: ${colors.black};
+          --text-secondary: #666666;
+          --text-accent: ${colors.lightGreen};
+          --border: #e0e0e0;
+          --error: #F44336;
+          --warning: #FFA726;
+          --success: ${colors.teal};
+          --info: ${colors.teal};
+        }
+        .text-primary { color: var(--text-primary); }
+        .text-secondary { color: var(--text-secondary); }
+        .text-accent { color: var(--text-accent); }
+        .bg-primary { background-color: var(--primary); }
+        .bg-secondary { background-color: var(--secondary); }
+        .bg-light { background-color: var(--background-light); }
+        .bg-dark { background-color: var(--background-dark); }
+        .border { border-color: var(--border); }
+        .error { color: var(--error); }
+        .warning { color: var(--warning); }
+        .success { color: var(--success); }
+        .info { color: var(--info); }
+        .gradient-primary { background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%); }
+        .gradient-secondary { background: linear-gradient(135deg, var(--secondary) 0%, var(--primary) 100%); }
+        ::-webkit-scrollbar-track { background: var(--background-light); }
+        ::-webkit-scrollbar-thumb { background: var(--primary); }
+        ::-webkit-scrollbar-thumb:hover { background: #7BC4B0; }
+        *:focus { outline: 2px solid var(--primary); }
+        ::selection { background: rgba(162, 213, 198, 0.3); color: var(--text-primary); }
+      `,
     },
   },
 });

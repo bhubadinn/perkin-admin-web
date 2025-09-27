@@ -9,7 +9,7 @@ import {
   Avatar,
 } from "@mui/material";
 import {Security} from "@mui/icons-material";
-// eslint-disable-next-line no-unused-vars
+ 
 import {motion} from "framer-motion";
 
 const ProtectedRoute = ({children}) => {
