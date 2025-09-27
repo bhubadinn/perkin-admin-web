@@ -40,6 +40,7 @@ import {
   Delete as DeleteIcon,
   Search as SearchIcon,
   FilterList as FilterIcon,
+  Refresh as RefreshIcon, // Import the refresh icon
 } from "@mui/icons-material";
 import {motion} from "framer-motion";
 import UsersTable from "../components/UsersTable";
@@ -54,49 +55,77 @@ export const UsersPage = () => {
   const [orderBy, setOrderBy] = useState("name");
   const rowsPerPage = 25;
 
+  const fetchUsers = async () => {
+    try {
+      setLoading(true);
+      // const response = await fetch("http://localhost:3030/api/v1/user");
+      const response = await fetch("https://sta.up.railway.app/api/v1/user");
+      if (!response.ok) throw new Error("Failed to fetch users");
+      const data = await response.json();
+      const transformedUsers = data.map((user) => ({
+        id: user.user_id,
+        name: user.user_line_username,
+        line_user_id: user.line_id,
+        img: user.user_line_img,
+        token_usage: user.token_usage,
+        // Store subscription status and date separately
+        subscription: [
+          user.is_subscribe ? "Subscribed" : "Not Subscribed",
+          user.is_subscribe_length_original,
+          user.is_subscribe_length,
+        ]
+          .filter(Boolean)
+          .join(", "),
+        subscription_date: user.is_subscribe_datetime
+          ? (() => {
+              const date = new Date(user.is_subscribe_datetime);
+              const day = String(date.getDate()).padStart(2, "0");
+              const month = String(date.getMonth() + 1).padStart(2, "0");
+              const year = date.getFullYear();
+              return `${day}-${month}-${year}`;
+            })()
+          : "N/A",
+        is_subscribed_raw: user.is_subscribe,
+        created_at: new Date(user.created_at).toLocaleString(),
+      }));
+      setUsers(transformedUsers);
+    } catch (error) {
+      console.error("Error fetching users:", error);
+      setUsers([]);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   useEffect(() => {
-    const fetchUsers = async () => {
-      try {
-        // const response = await fetch("http://localhost:3030/api/v1/user");
-        const response = await fetch("https://sta.up.railway.app/api/v1/user");
-        if (!response.ok) throw new Error("Failed to fetch users");
-        const data = await response.json();
-        const transformedUsers = data.map((user) => ({
-          id: user.user_id,
-          name: user.user_line_username,
-          line_user_id: user.line_id,
-          img: user.user_line_img,
-          token_usage: user.token_usage,
-          // Store subscription status and date separately
-          subscription: [
-            user.is_subscribe ? "Subscribed" : "Not Subscribed",
-            user.is_subscribe_length_original,
-            user.is_subscribe_length,
-          ]
-            .filter(Boolean)
-            .join(", "),
-          subscription_date: user.is_subscribe_datetime
-            ? (() => {
-                const date = new Date(user.is_subscribe_datetime);
-                const day = String(date.getDate()).padStart(2, "0");
-                const month = String(date.getMonth() + 1).padStart(2, "0");
-                const year = date.getFullYear();
-                return `${day}-${month}-${year}`;
-              })()
-            : "N/A",
-          is_subscribed_raw: user.is_subscribe,
-          created_at: new Date(user.created_at).toLocaleString(),
-        }));
-        setUsers(transformedUsers);
-      } catch (error) {
-        console.error("Error fetching users:", error);
-        setUsers([]);
-      } finally {
-        setLoading(false);
-      }
-    };
     fetchUsers();
   }, []);
+
+  const handleUpdateUsers = async () => {
+    try {
+      setLoading(true);
+      const response = await fetch(
+        // "http://localhost:3030/api/v1/user/update",
+        "https://sta.up.railway.app/api/v1/user/update",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          // The body might be an empty object or contain a specific payload if needed by your API.
+          body: JSON.stringify({}),
+        }
+      );
+      if (!response.ok) throw new Error("Failed to update users");
+
+      // After successful update, re-fetch the users to get the latest data
+      await fetchUsers();
+      console.log("Users updated successfully.");
+    } catch (error) {
+      console.error("Error updating users:", error);
+      setLoading(false);
+    }
+  };
 
   const handleUserUpdate = (updatedUserData) => {
     // Find the user in the current state and replace it with the updated data
@@ -202,7 +231,6 @@ export const UsersPage = () => {
           animate={{opacity: 1, y: 0}}
           transition={{duration: 0.6}}
         >
-          {/* ... (existing UI elements) ... */}
           <Card elevation={2} sx={{borderRadius: 3}}>
             <CardContent sx={{p: 0}}>
               <Box sx={{p: 3, borderBottom: "1px solid #e0e0e0"}}>
@@ -223,6 +251,15 @@ export const UsersPage = () => {
                   <Button variant="outlined" startIcon={<FilterIcon />}>
                     Filter
                   </Button>
+                  {/* The new "Update" button */}
+                  <Button
+                    variant="outlined"
+                    startIcon={<RefreshIcon />}
+                    onClick={handleUpdateUsers}
+                    disabled={loading} // Disable the button while loading
+                  >
+                    Update
+                  </Button>
                 </Box>
               </Box>
               <UsersTable
@@ -230,7 +267,7 @@ export const UsersPage = () => {
                 order={order}
                 orderBy={orderBy}
                 onRequestSort={handleRequestSort}
-                onUserUpdate={handleUserUpdate} // Pass the new function as a prop
+                onUserUpdate={handleUserUpdate}
               />
               <TablePagination
                 rowsPerPageOptions={[25, 50, 100]}
