@@ -9,7 +9,7 @@ const MOCK_USERS = [
     name: "Admin User",
     role: "admin",
     avatar:
-      "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face",
+      "https://lh3.googleusercontent.com/d/1raXi7RhP_cvER6DqhQwemZ9iM91YecBo",
   },
   {
     id: 2,
@@ -18,7 +18,7 @@ const MOCK_USERS = [
     name: "Regular User",
     role: "user",
     avatar:
-      "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face",
+      "https://lh3.googleusercontent.com/d/1raXi7RhP_cvER6DqhQwemZ9iM91YecBo",
   },
 ];
 
@@ -79,7 +79,7 @@ class AuthService {
       name,
       role: "user",
       avatar:
-        "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=150&h=150&fit=crop&crop=face",
+        "https://lh3.googleusercontent.com/d/1raXi7RhP_cvER6DqhQwemZ9iM91YecBo",
     };
 
     MOCK_USERS.push(newUser);

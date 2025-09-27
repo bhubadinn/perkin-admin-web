@@ -33,6 +33,10 @@ import {
   Analytics,
   Settings,
 } from "@mui/icons-material";
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import DeviceUnknownIcon from "@mui/icons-material/DeviceUnknown";
+import GavelIcon from "@mui/icons-material/Gavel";
+import MonetizationOnIcon from "@mui/icons-material/MonetizationOn";
 
 import {motion} from "framer-motion";
 
@@ -42,32 +46,53 @@ const Dashboard = () => {
   const stats = [
     {
       title: "Total Users",
-      value: "2,847",
-      change: "+12%",
+      value: "965",
+      change: "+27%",
       icon: <People />,
       color: "primary",
     },
     {
-      title: "Revenue",
-      value: "$45,231",
-      change: "+8%",
-      icon: <TrendingUp />,
-      color: "success",
+      title: "Total Customers",
+      value: "12",
+      change: "+32%",
+      icon: <AccountCircleIcon />,
+      color: "primary",
     },
     {
-      title: "Orders",
-      value: "1,234",
-      change: "+15%",
-      icon: <Assessment />,
+      title: "Total Questions",
+      value: "567",
+      change: "+36%",
+      icon: <DeviceUnknownIcon />,
       color: "info",
     },
     {
-      title: "Growth",
-      value: "23.5%",
-      change: "+3%",
-      icon: <Star />,
-      color: "warning",
+      title: "Total Law",
+      value: "72",
+      change: "+28%",
+      icon: <GavelIcon />,
+      color: "info",
     },
+    {
+      title: "Total Revenue",
+      value: "฿1,231",
+      change: "+8%",
+      icon: <MonetizationOnIcon />,
+      color: "success",
+    },
+    // {
+    //   title: "Orders",
+    //   value: "1,234",
+    //   change: "+15%",
+    //   icon: <Assessment />,
+    //   color: "info",
+    // },
+    // {
+    //   title: "Growth",
+    //   value: "23.5%",
+    //   change: "+3%",
+    //   icon: <Star />,
+    //   color: "warning",
+    // },
   ];
 
   const recentActivities = [
@@ -223,188 +248,6 @@ const Dashboard = () => {
           </Grid>
         </motion.div>
 
-        {/* Content Grid */}
-        <Grid container spacing={3}>
-          {/* User Information Card */}
-          <Grid item xs={12} md={6}>
-            <motion.div
-              initial={{opacity: 0, x: -20}}
-              animate={{opacity: 1, x: 0}}
-              transition={{duration: 0.6, delay: 0.4}}
-            >
-              <Card elevation={2} sx={{borderRadius: 3, height: "100%"}}>
-                <CardContent sx={{padding: 4}}>
-                  <Typography
-                    variant="h6"
-                    fontWeight="bold"
-                    gutterBottom
-                    color="#000000"
-                    sx={{mb: 3}}
-                  >
-                    User Information
-                  </Typography>
-                  <List sx={{padding: 0}}>
-                    <ListItem sx={{paddingY: 2}}>
-                      <ListItemIcon>
-                        <Avatar
-                          sx={{width: 40, height: 40, bgcolor: "#A2D5C6"}}
-                        >
-                          {user?.name?.[0]}
-                        </Avatar>
-                      </ListItemIcon>
-                      <ListItemText
-                        primary="Name"
-                        secondary={user?.name}
-                        sx={{ml: 2}}
-                      />
-                    </ListItem>
-                    <ListItem sx={{paddingY: 2}}>
-                      <ListItemIcon>
-                        <Avatar
-                          sx={{
-                            width: 40,
-                            height: 40,
-                            bgcolor: "#CFFFE2",
-                            color: "#000000",
-                          }}
-                        >
-                          @
-                        </Avatar>
-                      </ListItemIcon>
-                      <ListItemText
-                        primary="Email"
-                        secondary={user?.email}
-                        sx={{ml: 2}}
-                      />
-                    </ListItem>
-                    <ListItem sx={{paddingY: 2}}>
-                      <ListItemIcon>
-                        <Avatar
-                          sx={{width: 40, height: 40, bgcolor: "#A2D5C6"}}
-                        >
-                          <Star />
-                        </Avatar>
-                      </ListItemIcon>
-                      <ListItemText
-                        primary="Role"
-                        secondary={
-                          <Chip
-                            label={user?.role}
-                            size="small"
-                            sx={{
-                              bgcolor: "#A2D5C6",
-                              color: "#000000",
-                              textTransform: "capitalize",
-                              mt: 0.5,
-                            }}
-                          />
-                        }
-                        sx={{ml: 2}}
-                      />
-                    </ListItem>
-                  </List>
-                </CardContent>
-                <CardActions sx={{padding: 3, paddingTop: 0}}>
-                  <Button
-                    variant="outlined"
-                    startIcon={<Settings />}
-                    fullWidth
-                    sx={{
-                      borderColor: "#A2D5C6",
-                      color: "#A2D5C6",
-                      "&:hover": {
-                        borderColor: "#A2D5C6",
-                        backgroundColor: "rgba(162, 213, 198, 0.1)",
-                      },
-                    }}
-                  >
-                    Edit Profile
-                  </Button>
-                </CardActions>
-              </Card>
-            </motion.div>
-          </Grid>
-
-          {/* Recent Activities */}
-          <Grid item xs={12} md={6}>
-            <motion.div
-              initial={{opacity: 0, x: 20}}
-              animate={{opacity: 1, x: 0}}
-              transition={{duration: 0.6, delay: 0.5}}
-            >
-              <Card elevation={2} sx={{borderRadius: 3, height: "100%"}}>
-                <CardContent sx={{padding: 4}}>
-                  <Typography
-                    variant="h6"
-                    fontWeight="bold"
-                    gutterBottom
-                    color="#000000"
-                    sx={{mb: 3}}
-                  >
-                    Recent Activities
-                  </Typography>
-                  <List sx={{padding: 0}}>
-                    {recentActivities.map((activity, index) => (
-                      <motion.div
-                        key={index}
-                        initial={{opacity: 0, x: 20}}
-                        animate={{opacity: 1, x: 0}}
-                        transition={{
-                          duration: 0.4,
-                          delay: 0.6 + index * 0.1,
-                        }}
-                      >
-                        <ListItem sx={{paddingY: 2}}>
-                          <ListItemIcon>
-                            <Avatar
-                              sx={{
-                                width: 40,
-                                height: 40,
-                                bgcolor:
-                                  activity.type === "success"
-                                    ? "#A2D5C6"
-                                    : activity.type === "warning"
-                                    ? "#FFA726"
-                                    : "#CFFFE2",
-                              }}
-                            >
-                              {activity.type === "success" && <CheckCircle />}
-                              {activity.type === "warning" && <Warning />}
-                              {activity.type === "info" && <Info />}
-                            </Avatar>
-                          </ListItemIcon>
-                          <ListItemText
-                            primary={activity.action}
-                            secondary={activity.time}
-                            sx={{ml: 2}}
-                          />
-                        </ListItem>
-                      </motion.div>
-                    ))}
-                  </List>
-                </CardContent>
-                <CardActions sx={{padding: 3, paddingTop: 0}}>
-                  <Button
-                    variant="outlined"
-                    startIcon={<Analytics />}
-                    fullWidth
-                    sx={{
-                      borderColor: "#A2D5C6",
-                      color: "#A2D5C6",
-                      "&:hover": {
-                        borderColor: "#A2D5C6",
-                        backgroundColor: "rgba(162, 213, 198, 0.1)",
-                      },
-                    }}
-                  >
-                    View All Activities
-                  </Button>
-                </CardActions>
-              </Card>
-            </motion.div>
-          </Grid>
-        </Grid>
-
         {/* Quick Actions */}
         <motion.div
           initial={{opacity: 0, y: 20}}
@@ -430,10 +273,9 @@ const Dashboard = () => {
             </Typography>
             <Grid container spacing={2}>
               {[
-                {label: "Add New User", action: "/users/add"},
-                {label: "View Analytics", action: "/analytics"},
-                {label: "Manage Projects", action: "/projects"},
-                {label: "System Settings", action: "/settings"},
+                {label: "แจ้งกฎหมาย", action: "/action/#"},
+                {label: "แจ้งข่าวสาร", action: "/action/#"},
+                {label: "แจ้งบัคระบบ", action: "/action/#"},
               ].map((item, index) => (
                 <Grid item xs={12} sm={6} md={3} key={index}>
                   <Button
@@ -442,10 +284,10 @@ const Dashboard = () => {
                     sx={{
                       py: 2,
                       borderColor: "#A2D5C6",
-                      color: "#A2D5C6",
+                      color: "#000000",
                       "&:hover": {
                         borderColor: "#A2D5C6",
-                        backgroundColor: "rgba(162, 213, 198, 0.1)",
+                        backgroundColor: "rgba(162, 213, 198, 0.5)",
                       },
                     }}
                   >

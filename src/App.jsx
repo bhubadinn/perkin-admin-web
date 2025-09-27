@@ -11,16 +11,12 @@ import {AuthProvider} from "./contexts/AuthContextProvider";
 import AuthPage from "./components/AuthPage";
 import Dashboard from "./components/Dashboard";
 import ProtectedRoute from "./components/ProtectedRoute";
-import {
-  UsersPage,
-  AnalyticsPage,
-  // ProjectsPage,
-  AuditPage,
-  // Security,
-  LawPage,
-  SettingsPage,
-  ProfilePage,
-} from "./components/SamplePages";
+import {UsersPage} from "./pages/UserPage";
+import {AnalyticsPage} from "./pages/AnalyticPage";
+import {AuditPage} from "./pages/AuditPage";
+import {LawPage} from "./pages/LawPage";
+import {SettingsPage} from "./pages/SettingPage";
+import {ProfilePage} from "./pages/ProfilePage";
 import theme from "./theme/theme";
 
 function App() {
