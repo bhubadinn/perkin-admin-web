@@ -52,6 +52,8 @@ import VisibilityIcon from "@mui/icons-material/Visibility";
 
 import {motion} from "framer-motion";
 
+import SupportIcon from "@mui/icons-material/Support";
+
 const DRAWER_WIDTH = 280;
 const COLLAPSED_WIDTH = 64;
 
@@ -117,7 +119,7 @@ const Sidebar = ({open, onToggle, collapsed, onCollapsedToggle}) => {
       children: [
         {
           key: "users-list",
-          title: "All Users",
+          title: "Users",
           icon: <Group />,
           path: "/users",
           roles: ["admin"],
@@ -129,6 +131,13 @@ const Sidebar = ({open, onToggle, collapsed, onCollapsedToggle}) => {
         //   path: "/users/add",
         //   roles: ["admin"],
         // },
+        {
+          key: "support",
+          title: "Support",
+          icon: <SupportIcon />,
+          path: "/support",
+          roles: ["admin", "user"],
+        },
       ],
     },
     // {
@@ -202,13 +211,6 @@ const Sidebar = ({open, onToggle, collapsed, onCollapsedToggle}) => {
           roles: ["admin"],
         },
       ],
-    },
-    {
-      key: "support",
-      title: "Support",
-      icon: <HelpIcon />,
-      path: "/support",
-      roles: ["admin", "user"],
     },
   ];
 
