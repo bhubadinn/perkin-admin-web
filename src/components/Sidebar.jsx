@@ -90,21 +90,21 @@ const Sidebar = ({open, onToggle, collapsed, onCollapsedToggle}) => {
       children: [
         {
           key: "analytics-overview",
-          title: "Overview",
+          title: "ภาพรวม",
           icon: <BarChart />,
           path: "/analytics",
           roles: ["admin", "user"],
         },
         {
           key: "analytics-trends",
-          title: "Trends",
+          title: "แนวโน้ม",
           icon: <TrendingUp />,
           path: "/analytics/trends",
           roles: ["admin"],
         },
         {
           key: "analytics-reports",
-          title: "Reports",
+          title: "รายงาน",
           icon: <Assessment />,
           path: "/analytics/reports",
           roles: ["admin"],
