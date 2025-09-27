@@ -4,8 +4,8 @@
 const MOCK_USERS = [
   {
     id: 1,
-    email: "admin@perkin.com",
-    password: "admin123",
+    email: "admin@perkin.test",
+    password: "1234",
     name: "Admin User",
     role: "admin",
     avatar:

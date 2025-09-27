@@ -18,6 +18,7 @@ import {LawPage} from "./pages/LawPage";
 import {SettingsPage} from "./pages/SettingPage";
 import {ProfilePage} from "./pages/ProfilePage";
 import {NotificationsPage} from "./pages/NotificationsPage";
+import {OCRPage} from "./pages/OCRPage";
 import theme from "./theme/theme";
 
 function App() {
@@ -99,6 +100,15 @@ function App() {
                 element={
                   <ProtectedRoute>
                     <AuditPage />
+                  </ProtectedRoute>
+                }
+              />
+
+              <Route
+                path="/ocr"
+                element={
+                  <ProtectedRoute>
+                    <OCRPage />
                   </ProtectedRoute>
                 }
               />

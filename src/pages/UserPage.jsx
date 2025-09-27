@@ -57,7 +57,8 @@ export const UsersPage = () => {
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const response = await fetch("http://localhost:3030/api/v1/user");
+        // const response = await fetch("http://localhost:3030/api/v1/user");
+        const response = await fetch("https://sta.up.railway.app/api/v1/user");
         if (!response.ok) throw new Error("Failed to fetch users");
         const data = await response.json();
         const transformedUsers = data.map((user) => ({

@@ -48,6 +48,7 @@ import {
 
 import GavelIcon from "@mui/icons-material/Gavel";
 import SavedSearchIcon from "@mui/icons-material/SavedSearch";
+import VisibilityIcon from "@mui/icons-material/Visibility";
 
 import {motion} from "framer-motion";
 
@@ -141,6 +142,13 @@ const Sidebar = ({open, onToggle, collapsed, onCollapsedToggle}) => {
       title: "Audit",
       icon: <SavedSearchIcon />,
       path: "/audit",
+      roles: ["admin", "user"],
+    },
+    {
+      key: "ocr",
+      title: "OCR",
+      icon: <VisibilityIcon />,
+      path: "/ocr",
       roles: ["admin", "user"],
     },
     // {

@@ -32,7 +32,7 @@ import {
   Security,
   CheckCircle,
 } from "@mui/icons-material";
- 
+
 import {motion} from "framer-motion";
 
 const AuthPage = () => {
@@ -46,7 +46,8 @@ const AuthPage = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
-  const {login, register, error, isLoading, clearError, isAuthenticated} = useAuth();
+  const {login, register, error, isLoading, clearError, isAuthenticated} =
+    useAuth();
   const navigate = useNavigate();
 
   // Redirect if already authenticated
@@ -160,16 +161,24 @@ const AuthPage = () => {
                   <Security sx={{fontSize: 40, color: "#000000"}} />
                 </Avatar>
               </motion.div>
-              
+
               <motion.div
                 initial={{opacity: 0, y: 20}}
                 animate={{opacity: 1, y: 0}}
                 transition={{delay: 0.4}}
               >
-                <Typography variant="h4" fontWeight="bold" gutterBottom color="#000000">
+                <Typography
+                  variant="h4"
+                  fontWeight="bold"
+                  gutterBottom
+                  color="#000000"
+                >
                   {isLogin ? "Welcome Back" : "Create Account"}
                 </Typography>
-                <Typography variant="body1" sx={{opacity: 0.8, color: "#000000"}}>
+                <Typography
+                  variant="body1"
+                  sx={{opacity: 0.8, color: "#000000"}}
+                >
                   {isLogin
                     ? "Sign in to your Perkin Admin account"
                     : "Join Perkin Admin today"}
@@ -366,10 +375,12 @@ const AuthPage = () => {
                       mb: 2,
                       py: 1.5,
                       borderRadius: 2,
-                      background: "linear-gradient(135deg, #A2D5C6 0%, #CFFFE2 100%)",
+                      background:
+                        "linear-gradient(135deg, #A2D5C6 0%, #CFFFE2 100%)",
                       color: "#000000",
                       "&:hover": {
-                        background: "linear-gradient(135deg, #7BC4B0 0%, #A2D5C6 100%)",
+                        background:
+                          "linear-gradient(135deg, #7BC4B0 0%, #A2D5C6 100%)",
                         transform: "translateY(-2px)",
                         boxShadow: "0 8px 25px rgba(162, 213, 198, 0.4)",
                       },
@@ -412,7 +423,7 @@ const AuthPage = () => {
                 </motion.div>
 
                 {/* Demo Credentials */}
-                {isLogin && (
+                {/* {isLogin && (
                   <motion.div
                     initial={{opacity: 0, y: 20}}
                     animate={{opacity: 1, y: 0}}
@@ -423,7 +434,7 @@ const AuthPage = () => {
                         Demo Credentials
                       </Typography>
                     </Divider>
-                    
+
                     <Paper
                       elevation={0}
                       sx={{
@@ -434,8 +445,12 @@ const AuthPage = () => {
                         borderColor: "#A2D5C6",
                       }}
                     >
-                      <Box sx={{display: "flex", flexDirection: "column", gap: 1}}>
-                        <Box sx={{display: "flex", alignItems: "center", gap: 1}}>
+                      <Box
+                        sx={{display: "flex", flexDirection: "column", gap: 1}}
+                      >
+                        <Box
+                          sx={{display: "flex", alignItems: "center", gap: 1}}
+                        >
                           <Chip
                             label="Admin"
                             size="small"
@@ -449,7 +464,9 @@ const AuthPage = () => {
                             admin@perkin.com / admin123
                           </Typography>
                         </Box>
-                        <Box sx={{display: "flex", alignItems: "center", gap: 1}}>
+                        <Box
+                          sx={{display: "flex", alignItems: "center", gap: 1}}
+                        >
                           <Chip
                             label="User"
                             size="small"
@@ -466,7 +483,7 @@ const AuthPage = () => {
                       </Box>
                     </Paper>
                   </motion.div>
-                )}
+                )} */}
               </Box>
             </CardContent>
           </Card>
