@@ -38,31 +38,37 @@ export function getComparator(order, orderBy) {
 }
 
 const headCells = [
-  {id: "name", numeric: false, disablePadding: true, label: "User"},
-  {id: "line_user_id", numeric: false, disablePadding: false, label: "Line ID"},
+  {id: "name", numeric: false, disablePadding: true, label: "ชื่อไลน์"},
+  {id: "line_user_id", numeric: false, disablePadding: false, label: "ไอดีไลน์"},
   {
     id: "token_usage",
     numeric: true,
     disablePadding: false,
-    label: "Token Usage",
+    label: "Token ที่ใช้ไป",
   },
   {
     id: "subscription",
     numeric: false,
     disablePadding: false,
-    label: "Subscription",
+    label: "สถานะ, จ่าย, เป็น",
+  },
+  {
+    id: "subscription_date",
+    numeric: false,
+    disablePadding: false,
+    label: "จ่ายล่าสุดเมื่อ",
   },
   {
     id: "created_at",
     numeric: false,
     disablePadding: false,
-    label: "Created At",
+    label: "แอดเข้าเมื่อวันที่",
   },
   {
     id: "actions",
     numeric: false,
     disablePadding: false,
-    label: "Actions",
+    label: "การดำเนินการ",
     sortable: false,
   },
 ];
@@ -152,24 +158,22 @@ export default function UsersTable({mockUsers, order, orderBy, onRequestSort}) {
                   }}
                 />
               </TableCell>
+              <TableCell>{user.subscription_date}</TableCell>
               <TableCell>{user.created_at}</TableCell>
               <TableCell align="center">
                 <IconButton size="small" sx={{color: "#A2D5C6"}}>
                   <EditIcon />
                 </IconButton>
-                {user.subscription.includes("Customer") && (
+                {user.is_subscribed_raw ? (
                   <IconButton size="small" sx={{color: "#dbd970ff"}}>
                     <CurrencyExchangeIcon />
                   </IconButton>
+                ) : (
+                  <></>
                 )}
-                {user.subscription.includes("Subscribed") && (
-                  <IconButton size="small" sx={{color: "#dbd970ff"}}>
-                    <CurrencyExchangeIcon />
-                  </IconButton>
-                )}
-                <IconButton size="small" sx={{color: "#f44336"}}>
+                {/* <IconButton size="small" sx={{color: "#f44336"}}>
                   <DeleteIcon />
-                </IconButton>
+                </IconButton> */}
               </TableCell>
             </motion.tr>
           ))}

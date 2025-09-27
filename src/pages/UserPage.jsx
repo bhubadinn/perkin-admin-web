@@ -67,15 +67,24 @@ export const UsersPage = () => {
           line_user_id: user.line_id,
           img: user.user_line_img,
           token_usage: user.token_usage,
+          // Store subscription status and date separately
           subscription: [
             user.is_subscribe ? "Subscribed" : "Not Subscribed",
             user.is_subscribe_length_original,
             user.is_subscribe_length,
-            user.is_subscribe_datetime || "N/A",
           ]
             .filter(Boolean)
             .join(", "),
-          is_subscribed_raw: user.is_subscribe, // Add raw subscription status
+          subscription_date: user.is_subscribe_datetime
+            ? (() => {
+                const date = new Date(user.is_subscribe_datetime);
+                const day = String(date.getDate()).padStart(2, "0");
+                const month = String(date.getMonth() + 1).padStart(2, "0");
+                const year = date.getFullYear();
+                return `${day}-${month}-${year}`;
+              })()
+            : "N/A",
+          is_subscribed_raw: user.is_subscribe,
           created_at: new Date(user.created_at).toLocaleString(),
         }));
         setUsers(transformedUsers);

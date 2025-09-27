@@ -78,7 +78,7 @@ export const OCRPage = () => {
                 Optical Character Recognition
               </Typography>
               <Typography variant="body1" color="text.secondary">
-                Our very first OCR for extracting law from PDF document
+                ไฟล์ไม่ควรเกิน 30 หน้า ถ้าเกินให้ไปตัดหน้าก่อนที่ https://www.ilovepdf.com/split_pdf#split,range
               </Typography>
             </Box>
             <Button

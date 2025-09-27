@@ -130,7 +130,7 @@ export const AuditPage = () => {
               </Typography>
               <Typography variant="body1" color="text.secondary">
                 Audit and correct AI answers to train the best LLM model for
-                safety officer in the world
+                safety officer in the world 🏆
               </Typography>
             </Box>
             <Button
