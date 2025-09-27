@@ -40,8 +40,8 @@ import {
 } from "@mui/icons-material";
 import {motion} from "framer-motion";
 
-// Audit Page
-export const AuditPage = () => {
+// Support Page
+export const SupportPage = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -51,65 +51,14 @@ export const AuditPage = () => {
 
   if (loading) {
     return (
-      <Layout title="Audit">
+      <Layout title="Support">
         <PageSkeleton title={true} cards={6} stats={false} />
       </Layout>
     );
   }
 
-  const mockProjects = [
-    {
-      id: 1,
-      name: "Website Redesign",
-      status: "In Progress",
-      progress: 75,
-      team: 4,
-      deadline: "2024-02-15",
-    },
-    {
-      id: 2,
-      name: "Mobile App",
-      status: "Planning",
-      progress: 25,
-      team: 6,
-      deadline: "2024-03-01",
-    },
-    {
-      id: 3,
-      name: "Database Migration",
-      status: "Completed",
-      progress: 100,
-      team: 3,
-      deadline: "2024-01-30",
-    },
-    {
-      id: 4,
-      name: "Security Audit",
-      status: "In Progress",
-      progress: 60,
-      team: 2,
-      deadline: "2024-02-20",
-    },
-    {
-      id: 5,
-      name: "API Development",
-      status: "Planning",
-      progress: 10,
-      team: 5,
-      deadline: "2024-04-01",
-    },
-    {
-      id: 6,
-      name: "User Training",
-      status: "On Hold",
-      progress: 0,
-      team: 2,
-      deadline: "2024-03-15",
-    },
-  ];
-
   return (
-    <Layout title="Audit">
+    <Layout title="Support">
       <Container maxWidth="xl" sx={{py: 3}}>
         <motion.div
           initial={{opacity: 0, y: 20}}
@@ -126,11 +75,10 @@ export const AuditPage = () => {
           >
             <Box>
               <Typography variant="h4" fontWeight="bold" gutterBottom>
-                Q & A Audit
+                Suport
               </Typography>
               <Typography variant="body1" color="text.secondary">
-                Audit and correct AI answers to train the best LLM model for
-                safety officer in the world
+                User and customer support system
               </Typography>
             </Box>
             <Button
@@ -240,7 +188,7 @@ export const AuditPage = () => {
             }}
           >
             <iframe
-              src="https://sta-audit.up.railway.app"
+              src="https://docs.google.com/spreadsheets/d/1eA_FuLqt2Gd_Wc_SEHRu-fjACiy1PBwLYKD6rPp3C24/edit?usp=sharing"
               title="External Web App"
               style={{
                 width: "100%",

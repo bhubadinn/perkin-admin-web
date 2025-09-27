@@ -51,7 +51,7 @@ export const LawPage = () => {
   if (loading) {
     return (
       <Layout title="Law">
-        <Container maxWidth="lg" sx={{py: 3}}>
+        <Container maxWidth="xl" sx={{py: 3}}>
           <PageSkeleton title={true} cards={4} stats={true} />
         </Container>
       </Layout>
@@ -60,21 +60,19 @@ export const LawPage = () => {
 
   return (
     <Layout title="Law">
-      <Container maxWidth="lg" sx={{py: 3}}>
+      <Container maxWidth="xl" sx={{py: 3}}>
         <motion.div
           initial={{opacity: 0, y: 20}}
           animate={{opacity: 1, y: 0}}
           transition={{duration: 0.6}}
         >
-          <Typography variant="h6" fontWeight="bold" gutterBottom>
-            Comming Soon...
-          </Typography>
-          {/* <Typography variant="h4" fontWeight="bold" gutterBottom>
+          <Typography variant="h4" fontWeight="bold" gutterBottom>
             Law Listing Center
           </Typography>
           <Typography variant="body1" color="text.secondary" sx={{mb: 4}}>
-            Monitor and manage your law listing
-          </Typography> */}
+            The most comprehensive occupation based law and relations database
+            in the country
+          </Typography>
 
           {/* <Grid container spacing={3}>
             <Grid item xs={12} md={6}>
@@ -151,6 +149,26 @@ export const LawPage = () => {
               </Card>
             </Grid>
           </Grid> */}
+
+          <Box
+            sx={{
+              width: "100%",
+              height: "80vh", // Adjust height as needed
+              border: "1px solid #ccc",
+              borderRadius: 2,
+              overflow: "hidden",
+            }}
+          >
+            <iframe
+              src="https://docs.google.com/spreadsheets/d/1Jg2MJ3tNbLrt80R5UOvBGDTIQWUkxcIw49-bGnvZDqk/edit?usp=sharing"
+              title="External Web App"
+              style={{
+                width: "100%",
+                height: "100%",
+                border: "none",
+              }}
+            />
+          </Box>
         </motion.div>
       </Container>
     </Layout>

@@ -79,28 +79,7 @@ const Sidebar = ({open, onToggle, collapsed, onCollapsedToggle}) => {
       path: "/dashboard",
       roles: ["admin", "user"],
     },
-    {
-      key: "users",
-      title: "User Management",
-      icon: <PeopleIcon />,
-      roles: ["admin"],
-      children: [
-        {
-          key: "users-list",
-          title: "All Users",
-          icon: <Group />,
-          path: "/users",
-          roles: ["admin"],
-        },
-        // {
-        //   key: "users-add",
-        //   title: "Add User",
-        //   icon: <PersonAdd />,
-        //   path: "/users/add",
-        //   roles: ["admin"],
-        // },
-      ],
-    },
+
     {
       key: "analytics",
       title: "Analytics",
@@ -130,6 +109,28 @@ const Sidebar = ({open, onToggle, collapsed, onCollapsedToggle}) => {
         },
       ],
     },
+    {
+      key: "users",
+      title: "User Management",
+      icon: <PeopleIcon />,
+      roles: ["admin"],
+      children: [
+        {
+          key: "users-list",
+          title: "All Users",
+          icon: <Group />,
+          path: "/users",
+          roles: ["admin"],
+        },
+        // {
+        //   key: "users-add",
+        //   title: "Add User",
+        //   icon: <PersonAdd />,
+        //   path: "/users/add",
+        //   roles: ["admin"],
+        // },
+      ],
+    },
     // {
     //   key: "projects",
     //   title: "Projects",
@@ -145,6 +146,13 @@ const Sidebar = ({open, onToggle, collapsed, onCollapsedToggle}) => {
       roles: ["admin", "user"],
     },
     {
+      key: "law",
+      title: "Law",
+      icon: <GavelIcon />,
+      path: "/law",
+      roles: ["admin"],
+    },
+    {
       key: "ocr",
       title: "OCR",
       icon: <VisibilityIcon />,
@@ -158,13 +166,7 @@ const Sidebar = ({open, onToggle, collapsed, onCollapsedToggle}) => {
     //   path: "/security",
     //   roles: ["admin"],
     // },
-    {
-      key: "law",
-      title: "Law",
-      icon: <GavelIcon />,
-      path: "/law",
-      roles: ["admin"],
-    },
+
     {
       key: "notifications",
       title: "Notifications",

@@ -65,7 +65,7 @@ export const OCRPage = () => {
           animate={{opacity: 1, y: 0}}
           transition={{duration: 0.6}}
         >
-          {/* <Box
+          <Box
             sx={{
               display: "flex",
               justifyContent: "space-between",
@@ -75,10 +75,10 @@ export const OCRPage = () => {
           >
             <Box>
               <Typography variant="h4" fontWeight="bold" gutterBottom>
-                Q & A Audit
+                Optical Character Recognition
               </Typography>
               <Typography variant="body1" color="text.secondary">
-                Manage and track your project progress
+                Our very first OCR for extracting law from PDF document
               </Typography>
             </Box>
             <Button
@@ -89,9 +89,9 @@ export const OCRPage = () => {
                 color: "#000000",
               }}
             >
-              New Project
+              Test
             </Button>
-          </Box> */}
+          </Box>
 
           {/* <Grid container spacing={3}>
             {mockProjects.map((project, index) => (
@@ -197,9 +197,6 @@ export const OCRPage = () => {
               }}
             />
           </Box>
-          <Typography variant="h6" fontWeight="bold" gutterBottom sx={{mt: 2}}>
-            Comming Soon...
-          </Typography>
         </motion.div>
 
         {/* <Fab
