@@ -76,7 +76,7 @@ const Sidebar = ({open, onToggle, collapsed, onCollapsedToggle}) => {
   const menuItems = [
     {
       key: "dashboard",
-      title: "Dashboard",
+      title: "แดชบอร์ด",
       icon: <DashboardIcon />,
       path: "/dashboard",
       roles: ["admin", "user"],
@@ -84,7 +84,7 @@ const Sidebar = ({open, onToggle, collapsed, onCollapsedToggle}) => {
 
     {
       key: "analytics",
-      title: "Analytics",
+      title: "วิเคราะห์ข้อมูล",
       icon: <AnalyticsIcon />,
       roles: ["admin", "user"],
       children: [
@@ -113,13 +113,13 @@ const Sidebar = ({open, onToggle, collapsed, onCollapsedToggle}) => {
     },
     {
       key: "users",
-      title: "User Management",
+      title: "จัดการผู้ใช้",
       icon: <PeopleIcon />,
       roles: ["admin"],
       children: [
         {
           key: "users-list",
-          title: "Users",
+          title: "รายชื่อผู้ใช้",
           icon: <Group />,
           path: "/users",
           roles: ["admin"],
@@ -133,7 +133,7 @@ const Sidebar = ({open, onToggle, collapsed, onCollapsedToggle}) => {
         // },
         {
           key: "support",
-          title: "Support",
+          title: "รายงานปัญหา",
           icon: <SupportIcon />,
           path: "/support",
           roles: ["admin", "user"],
@@ -149,21 +149,21 @@ const Sidebar = ({open, onToggle, collapsed, onCollapsedToggle}) => {
     // },
     {
       key: "audit",
-      title: "Audit",
+      title: "ตรวจทานคำตอบ",
       icon: <SavedSearchIcon />,
       path: "/audit",
       roles: ["admin", "user"],
     },
     {
       key: "law",
-      title: "Law",
+      title: "จัดการกฎหมาย",
       icon: <GavelIcon />,
       path: "/law",
       roles: ["admin"],
     },
     {
       key: "ocr",
-      title: "OCR",
+      title: "ระบบ OCR",
       icon: <VisibilityIcon />,
       path: "/ocr",
       roles: ["admin", "user"],
@@ -178,34 +178,34 @@ const Sidebar = ({open, onToggle, collapsed, onCollapsedToggle}) => {
 
     {
       key: "notifications",
-      title: "Notifications",
+      title: "การแจ้งเตือน",
       icon: <NotificationsIcon />,
       path: "/notifications",
       roles: ["admin", "user"],
     },
     {
       key: "settings",
-      title: "Settings",
+      title: "การตั้งค่า",
       icon: <SettingsIcon />,
       roles: ["admin", "user"],
       children: [
         {
           key: "settings-general",
-          title: "General",
+          title: "ทั่วไป",
           icon: <Build />,
           path: "/settings/general",
           roles: ["admin", "user"],
         },
         {
           key: "settings-notifications",
-          title: "Notification Settings",
+          title: "ตั้งค่าการแจ้งเตือน",
           icon: <NotificationsActive />,
           path: "/settings/notifications",
           roles: ["admin", "user"],
         },
         {
           key: "settings-admin",
-          title: "Admin Settings",
+          title: "ตั้งค่าผู้ดูแลระบบ",
           icon: <AdminPanelSettings />,
           path: "/settings/admin",
           roles: ["admin"],
