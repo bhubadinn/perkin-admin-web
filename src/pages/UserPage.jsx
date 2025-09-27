@@ -143,7 +143,7 @@ export const UsersPage = () => {
                 User Management
               </Typography>
               <Typography variant="body1" color="text.secondary">
-                Manage system users and their permissions
+                Manage system users and customers
               </Typography>
             </Box>
             <Button variant="contained" startIcon={<AddIcon />}>
@@ -177,7 +177,7 @@ export const UsersPage = () => {
                 User Management
               </Typography>
               <Typography variant="body1" color="text.secondary">
-                Manage system users and their permissions
+                Manage system users and customers
               </Typography>
             </Box>
             <Button
