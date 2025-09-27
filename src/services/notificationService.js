@@ -1,37 +1,36 @@
-// src/services/notificationsService.js
-const mockNotifications = [
-  {
-    id: 1,
-    title: "System Update",
-    message: "System will be updated tonight at 2 AM",
-    time: "2 hours ago",
-    type: "info",
-  },
-  {
-    id: 2,
-    title: "New User Registration",
-    message: "Jane Doe has registered for an account",
-    time: "4 hours ago",
-    type: "success",
-  },
-  {
-    id: 3,
-    title: "Security Alert",
-    message: "Failed login attempt detected",
-    time: "6 hours ago",
-    type: "warning",
-  },
-  {
-    id: 4,
-    title: "Backup Complete",
-    message: "Daily backup completed successfully",
-    time: "1 day ago",
-    type: "success",
-  },
-];
+import axios from "axios";
 
-export const getNotifications = async () => {
-  return new Promise((resolve) =>
-    setTimeout(() => resolve(mockNotifications), 500)
-  );
+// Mock service for development
+// const mockSendLineMessage = async (userLineId, message) => {
+//   try {
+//     await new Promise((resolve) => setTimeout(resolve, 1000));
+//     console.log("Mock: Sending Line message:", {userLineId, message});
+//     return {success: true, message: "Message sent successfully"};
+//   } catch (error) {
+//     console.error("Mock Error:", error);
+//     throw new Error("Failed to send Line message");
+//   }
+// };
+
+// Real API call to backend
+const realSendLineMessage = async (userLineId, message) => {
+  try {
+    const response = await axios.post(
+      // `http://localhost:3030/api/v1/message/send`,
+      `https://sta.up.railway.app/api/v1/message/send`,
+      {
+        line_user_id: userLineId,
+        msg: message,
+      }
+    );
+    return {success: true, data: response.data};
+  } catch (error) {
+    console.error("Backend Error:", error.response?.data || error.message);
+    throw new Error(
+      error.response?.data?.error || "Failed to send LINE message"
+    );
+  }
 };
+
+// Export the appropriate function based on environment
+export const sendLineMessage = realSendLineMessage;

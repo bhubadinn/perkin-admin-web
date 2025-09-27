@@ -98,6 +98,35 @@ export const UsersPage = () => {
     fetchUsers();
   }, []);
 
+  const handleUserUpdate = (updatedUserData) => {
+    // Find the user in the current state and replace it with the updated data
+    setUsers((prevUsers) => {
+      return prevUsers.map((user) =>
+        user.line_user_id === updatedUserData.line_id
+          ? {
+              ...user,
+              // Update the necessary fields from the API response
+              subscription: [
+                updatedUserData.is_subscribe ? "Subscribed" : "Not Subscribed",
+                updatedUserData.is_subscribe_length_original,
+                updatedUserData.is_subscribe_length,
+              ]
+                .filter(Boolean)
+                .join(", "),
+              is_subscribed_raw: updatedUserData.is_subscribe,
+              token_usage: updatedUserData.token_usage, // or any other fields that can change
+              // You may also want to update the subscription_date if it's relevant
+              subscription_date: updatedUserData.is_subscribe_datetime
+                ? new Date(updatedUserData.is_subscribe_datetime)
+                    .toLocaleString("th-TH")
+                    .split(",")[0] // Example formatting
+                : "N/A",
+            }
+          : user
+      );
+    });
+  };
+
   const handleSearchChange = (event) => {
     setSearchQuery(event.target.value);
     setPage(0);
@@ -173,34 +202,7 @@ export const UsersPage = () => {
           animate={{opacity: 1, y: 0}}
           transition={{duration: 0.6}}
         >
-          <Box
-            sx={{
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "center",
-              mb: 3,
-            }}
-          >
-            <Box>
-              <Typography variant="h4" fontWeight="bold" gutterBottom>
-                User Management
-              </Typography>
-              <Typography variant="body1" color="text.secondary">
-                Manage system users and customers
-              </Typography>
-            </Box>
-            <Button
-              variant="contained"
-              startIcon={<AddIcon />}
-              sx={{
-                background: "linear-gradient(135deg, #A2D5C6 0%, #CFFFE2 100%)",
-                color: "#000000",
-              }}
-            >
-              Add User
-            </Button>
-          </Box>
-
+          {/* ... (existing UI elements) ... */}
           <Card elevation={2} sx={{borderRadius: 3}}>
             <CardContent sx={{p: 0}}>
               <Box sx={{p: 3, borderBottom: "1px solid #e0e0e0"}}>
@@ -228,6 +230,7 @@ export const UsersPage = () => {
                 order={order}
                 orderBy={orderBy}
                 onRequestSort={handleRequestSort}
+                onUserUpdate={handleUserUpdate} // Pass the new function as a prop
               />
               <TablePagination
                 rowsPerPageOptions={[25, 50, 100]}

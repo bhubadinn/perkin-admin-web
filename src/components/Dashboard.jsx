@@ -1,26 +1,29 @@
 // /src/components/Dashboard.jsx
 
-import React from "react";
+import React, {useState} from "react";
 import Layout from "./Layout";
 import LogStream from "./LogStream";
-import {useAuth} from "../hooks/useAuth";
+// import {useAuth} from "../hooks/useAuth";
 import {
   Container,
   Grid,
   Card,
   CardContent,
-  CardActions,
   Typography,
   Button,
   Avatar,
   Chip,
   Paper,
-  List,
-  ListItem,
-  ListItemIcon,
-  ListItemText,
+  Typography as MuiTypography,
+  Button as MuiButton,
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogActions,
+  TextField,
+  Snackbar,
+  Alert,
   Box,
-  Tooltip,
 } from "@mui/material";
 import {
   TrendingUp,
@@ -37,11 +40,19 @@ import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import DeviceUnknownIcon from "@mui/icons-material/DeviceUnknown";
 import GavelIcon from "@mui/icons-material/Gavel";
 import MonetizationOnIcon from "@mui/icons-material/MonetizationOn";
-
 import {motion} from "framer-motion";
+import {sendLineMessage} from "../services/notificationService";
 
 const Dashboard = () => {
-  const {user} = useAuth();
+  // const {user} = useAuth();
+  const [openModal, setOpenModal] = useState(false);
+  const [lineMessage, setLineMessage] = useState({
+    userLineId: "",
+    message: "",
+  });
+  const [isSending, setIsSending] = useState(false);
+  const [error, setError] = useState(null);
+  const [success, setSuccess] = useState(null);
 
   const stats = [
     {
@@ -79,101 +90,67 @@ const Dashboard = () => {
       icon: <MonetizationOnIcon />,
       color: "success",
     },
-    // {
-    //   title: "Orders",
-    //   value: "1,234",
-    //   change: "+15%",
-    //   icon: <Assessment />,
-    //   color: "info",
-    // },
-    // {
-    //   title: "Growth",
-    //   value: "23.5%",
-    //   change: "+3%",
-    //   icon: <Star />,
-    //   color: "warning",
-    // },
   ];
 
-  const recentActivities = [
-    {action: "New user registered", time: "2 minutes ago", type: "success"},
-    {action: "System backup completed", time: "1 hour ago", type: "info"},
-    {action: "Payment processed", time: "2 hours ago", type: "success"},
-    {action: "Database maintenance", time: "4 hours ago", type: "warning"},
-  ];
+  // const recentActivities = [
+  //   {action: "New user registered", time: "2 minutes ago", type: "success"},
+  //   {action: "System backup completed", time: "1 hour ago", type: "info"},
+  //   {action: "Payment processed", time: "2 hours ago", type: "success"},
+  //   {action: "Database maintenance", time: "4 hours ago", type: "warning"},
+  // ];
+
+  const handleOpenModal = () => {
+    setOpenModal(true);
+    setError(null);
+    setLineMessage({userLineId: "", message: ""});
+  };
+
+  const handleCloseModal = () => {
+    setOpenModal(false);
+    setError(null);
+  };
+
+  const handleInputChange = (e) => {
+    const {name, value} = e.target;
+    setLineMessage((prev) => ({...prev, [name]: value}));
+  };
+
+  const handleSendMessage = async () => {
+    if (!lineMessage.userLineId || !lineMessage.message) {
+      setError("Please fill in all fields");
+      return;
+    }
+    if (!/^U[a-f0-9]{32,34}$/.test(lineMessage.userLineId)) {
+      setError("Invalid Line User ID format");
+      return;
+    }
+    if (lineMessage.message.length > 5000) {
+      setError("Message too long (max 5000 characters)");
+      return;
+    }
+
+    setIsSending(true);
+    try {
+      await sendLineMessage(lineMessage.userLineId, lineMessage.message);
+      setSuccess("Message sent successfully!");
+      handleCloseModal();
+    } catch (err) {
+      setError(err.message || "Failed to send message. Please try again.");
+    } finally {
+      setIsSending(false);
+    }
+  };
+
+  const handleCloseSnackbar = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+    setSuccess(null);
+  };
 
   return (
     <Layout title="Dashboard">
       <Container maxWidth="xl" sx={{py: 3}}>
-        {/* Welcome Section */}
-        {/* <motion.div
-          initial={{opacity: 0, y: 20}}
-          animate={{opacity: 1, y: 0}}
-          transition={{duration: 0.6}}
-        >
-          <Paper
-            elevation={0}
-            sx={{
-              p: 4,
-              mb: 4,
-              borderRadius: 3,
-              background: "linear-gradient(135deg, #A2D5C6 0%, #CFFFE2 100%)",
-              color: "#000000",
-              position: "relative",
-              overflow: "hidden",
-            }}
-          >
-            <Box sx={{position: "relative", zIndex: 1}}>
-              <Typography
-                variant="h4"
-                fontWeight="bold"
-                gutterBottom
-                color="#000000"
-              >
-                Welcome back, {user?.name}! 👋
-              </Typography>
-              <Typography
-                variant="h6"
-                sx={{opacity: 0.8, mb: 2, color: "#000000"}}
-              >
-                Here's what's happening with your admin dashboard today.
-              </Typography>
-              <Chip
-                label={`${user?.role} Access`}
-                sx={{
-                  bgcolor: "rgba(0, 0, 0, 0.1)",
-                  color: "#000000",
-                }}
-                icon={<Star />}
-              />
-            </Box> */}
-
-        {/* Decorative elements */}
-        {/* <Box
-              sx={{
-                position: "absolute",
-                top: -50,
-                right: -50,
-                width: 200,
-                height: 200,
-                borderRadius: "50%",
-                background: "rgba(0, 0, 0, 0.1)",
-              }}
-            />
-            <Box
-              sx={{
-                position: "absolute",
-                bottom: -30,
-                left: -30,
-                width: 100,
-                height: 100,
-                borderRadius: "50%",
-                background: "rgba(0, 0, 0, 0.1)",
-              }}
-            />
-          </Paper>
-        </motion.div> */}
-
         <LogStream />
 
         {/* Stats Grid */}
@@ -273,6 +250,7 @@ const Dashboard = () => {
             </Typography>
             <Grid container spacing={2}>
               {[
+                {label: "ส่งข้อความไลน์", action: handleOpenModal},
                 {label: "แจ้งกฎหมาย", action: "/action/#"},
                 {label: "แจ้งข่าวสาร", action: "/action/#"},
                 {label: "แจ้งบัคระบบ", action: "/action/#"},
@@ -281,6 +259,14 @@ const Dashboard = () => {
                   <Button
                     variant="outlined"
                     fullWidth
+                    onClick={
+                      typeof item.action === "function"
+                        ? item.action
+                        : undefined
+                    }
+                    href={
+                      typeof item.action === "string" ? item.action : undefined
+                    }
                     sx={{
                       py: 2,
                       borderColor: "#A2D5C6",
@@ -298,6 +284,71 @@ const Dashboard = () => {
             </Grid>
           </Paper>
         </motion.div>
+
+        {/* Line Message Modal */}
+        <Dialog open={openModal} onClose={handleCloseModal}>
+          <DialogTitle sx={{pb: 1}}>ส่งข้อความไลน์</DialogTitle>
+          <DialogContent sx={{p: 2}}>
+            <TextField
+              autoFocus
+              margin="dense"
+              name="userLineId"
+              label="User Line ID"
+              type="text"
+              fullWidth
+              variant="outlined"
+              value={lineMessage.userLineId}
+              onChange={handleInputChange}
+              error={!!error}
+            />
+            <TextField
+              margin="dense"
+              name="message"
+              label="ข้อความ"
+              type="text"
+              fullWidth
+              multiline
+              rows={4}
+              variant="outlined"
+              value={lineMessage.message}
+              onChange={handleInputChange}
+              error={!!error}
+              helperText={
+                error || `${lineMessage.message.length}/5000 characters`
+              }
+              inputProps={{maxLength: 5000}}
+            />
+          </DialogContent>
+          <DialogActions sx={{p: 2}}>
+            <Button onClick={handleCloseModal} color="primary">
+              ยกเลิก
+            </Button>
+            <Button
+              onClick={handleSendMessage}
+              color="primary"
+              variant="contained"
+              disabled={isSending}
+            >
+              {isSending ? "กำลังส่ง..." : "ส่ง"}
+            </Button>
+          </DialogActions>
+        </Dialog>
+
+        {/* Success Feedback Snackbar */}
+        <Snackbar
+          open={!!success}
+          autoHideDuration={3000}
+          onClose={handleCloseSnackbar}
+          anchorOrigin={{vertical: "bottom", horizontal: "center"}}
+        >
+          <Alert
+            onClose={handleCloseSnackbar}
+            severity="success"
+            sx={{width: "100%"}}
+          >
+            {success}
+          </Alert>
+        </Snackbar>
       </Container>
     </Layout>
   );
