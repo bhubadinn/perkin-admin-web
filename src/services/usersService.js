@@ -7,7 +7,7 @@ export const updateUser = async (userLineId, updates) => {
   try {
     const response = await axios.patch(
       // `http://localhost:3030/api/v1/user/${userLineId}`,
-      `https://sta.up.railway.app/api/v1/${userLineId}`,
+      `https://sta.up.railway.app/api/v1/user/${userLineId}`,
       updates,
       {
         headers: {
