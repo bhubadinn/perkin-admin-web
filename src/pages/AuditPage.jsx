@@ -116,7 +116,7 @@ export const AuditPage = () => {
           animate={{opacity: 1, y: 0}}
           transition={{duration: 0.6}}
         >
-          <Box
+          {/* <Box
             sx={{
               display: "flex",
               justifyContent: "space-between",
@@ -142,9 +142,9 @@ export const AuditPage = () => {
             >
               New Project
             </Button>
-          </Box>
+          </Box> */}
 
-          <Grid container spacing={3}>
+          {/* <Grid container spacing={3}>
             {mockProjects.map((project, index) => (
               <Grid item xs={12} md={6} lg={4} key={project.id}>
                 <motion.div
@@ -227,10 +227,33 @@ export const AuditPage = () => {
                 </motion.div>
               </Grid>
             ))}
-          </Grid>
+          </Grid>  */}
+
+          <Box
+            sx={{
+              width: "100%",
+              height: "80vh", // Adjust height as needed
+              border: "1px solid #ccc",
+              borderRadius: 2,
+              overflow: "hidden",
+            }}
+          >
+            <iframe
+              src="https://sta-audit.up.railway.app"
+              title="External Web App"
+              style={{
+                width: "100%",
+                height: "100%",
+                border: "none",
+              }}
+            />
+          </Box>
+          <Typography variant="h6" fontWeight="bold" gutterBottom sx={{mt: 2}}>
+            Comming Soon...
+          </Typography>
         </motion.div>
 
-        <Fab
+        {/* <Fab
           color="primary"
           sx={{
             position: "fixed",
@@ -241,7 +264,7 @@ export const AuditPage = () => {
           }}
         >
           <AddIcon />
-        </Fab>
+        </Fab> */}
       </Container>
     </Layout>
   );

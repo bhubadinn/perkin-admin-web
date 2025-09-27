@@ -66,14 +66,17 @@ export const LawPage = () => {
           animate={{opacity: 1, y: 0}}
           transition={{duration: 0.6}}
         >
-          <Typography variant="h4" fontWeight="bold" gutterBottom>
+          <Typography variant="h6" fontWeight="bold" gutterBottom>
+            Comming Soon...
+          </Typography>
+          {/* <Typography variant="h4" fontWeight="bold" gutterBottom>
             Law Listing Center
           </Typography>
           <Typography variant="body1" color="text.secondary" sx={{mb: 4}}>
             Monitor and manage your law listing
-          </Typography>
+          </Typography> */}
 
-          <Grid container spacing={3}>
+          {/* <Grid container spacing={3}>
             <Grid item xs={12} md={6}>
               <Card elevation={2} sx={{borderRadius: 3}}>
                 <CardContent sx={{p: 4}}>
@@ -147,7 +150,7 @@ export const LawPage = () => {
                 </CardContent>
               </Card>
             </Grid>
-          </Grid>
+          </Grid> */}
         </motion.div>
       </Container>
     </Layout>

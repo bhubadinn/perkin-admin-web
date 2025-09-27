@@ -17,6 +17,7 @@ import {AuditPage} from "./pages/AuditPage";
 import {LawPage} from "./pages/LawPage";
 import {SettingsPage} from "./pages/SettingPage";
 import {ProfilePage} from "./pages/ProfilePage";
+import {NotificationsPage} from "./pages/NotificationsPage";
 import theme from "./theme/theme";
 
 function App() {
@@ -124,7 +125,7 @@ function App() {
                 path="/notifications"
                 element={
                   <ProtectedRoute>
-                    <Dashboard />
+                    <NotificationsPage />
                   </ProtectedRoute>
                 }
               />

@@ -1,3 +1,5 @@
+// src/pages/UserPage.jsx
+
 import React, {useState, useEffect} from "react";
 import Layout from "../components/Layout";
 import {
@@ -30,6 +32,7 @@ import {
   TextField,
   MenuItem,
   Fab,
+  TablePagination,
 } from "@mui/material";
 import {
   Add as AddIcon,
@@ -40,16 +43,87 @@ import {
 } from "@mui/icons-material";
 import {motion} from "framer-motion";
 import UsersTable from "../components/UsersTable";
+import {getComparator, descendingComparator} from "../components/UsersTable";
 
-// Users Page
 export const UsersPage = () => {
   const [loading, setLoading] = useState(true);
+  const [users, setUsers] = useState([]);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [page, setPage] = useState(0);
+  const [order, setOrder] = useState("asc");
+  const [orderBy, setOrderBy] = useState("name");
+  const rowsPerPage = 25;
 
   useEffect(() => {
-    // Simulate API call
-    const timer = setTimeout(() => setLoading(false), 2000);
-    return () => clearTimeout(timer);
+    const fetchUsers = async () => {
+      try {
+        const response = await fetch("http://localhost:3030/api/v1/user");
+        if (!response.ok) throw new Error("Failed to fetch users");
+        const data = await response.json();
+        const transformedUsers = data.map((user) => ({
+          id: user.user_id,
+          name: user.user_line_username,
+          line_user_id: user.line_id,
+          img: user.user_line_img,
+          token_usage: user.token_usage,
+          subscription: [
+            user.is_subscribe ? "Subscribed" : "Not Subscribed",
+            user.is_subscribe_length_original,
+            user.is_subscribe_length,
+            user.is_subscribe_datetime || "N/A",
+          ]
+            .filter(Boolean)
+            .join(", "),
+          is_subscribed_raw: user.is_subscribe, // Add raw subscription status
+          created_at: new Date(user.created_at).toLocaleString(),
+        }));
+        setUsers(transformedUsers);
+      } catch (error) {
+        console.error("Error fetching users:", error);
+        setUsers([]);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchUsers();
   }, []);
+
+  const handleSearchChange = (event) => {
+    setSearchQuery(event.target.value);
+    setPage(0);
+  };
+
+  const handleRequestSort = (event, property) => {
+    const isAsc = orderBy === property && order === "asc";
+    setOrder(isAsc ? "desc" : "asc");
+    setOrderBy(property);
+  };
+
+  const filteredUsers = users.filter(
+    (user) =>
+      user &&
+      (user.name?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        user.line_user_id?.toLowerCase().includes(searchQuery.toLowerCase()))
+  );
+
+  // Custom comparator to prioritize subscribed users
+  const prioritizeSubscribed = (a, b) => {
+    // Subscribed users come first (true > false)
+    if (a.is_subscribed_raw && !b.is_subscribed_raw) return -1;
+    if (!a.is_subscribed_raw && b.is_subscribed_raw) return 1;
+    // For users with the same subscription status, use the default comparator
+    return getComparator(order, orderBy)(a, b);
+  };
+
+  const sortedUsers = React.useMemo(() => {
+    // Sort by subscription status first, then by the current `orderBy` property
+    return [...filteredUsers].sort(prioritizeSubscribed);
+  }, [order, orderBy, filteredUsers]);
+
+  const paginatedUsers = sortedUsers.slice(
+    page * rowsPerPage,
+    page * rowsPerPage + rowsPerPage
+  );
 
   if (loading) {
     return (
@@ -80,44 +154,6 @@ export const UsersPage = () => {
       </Layout>
     );
   }
-
-  const mockUsers = [
-    {
-      id: 1,
-      name: "User #1",
-      line_user_id: "LdfjriLOr49fmO(0440",
-      role: "Admin",
-      status: "Active",
-    },
-    {
-      id: 2,
-      name: "User #2",
-      line_user_id: "fiFR$fLfrijirt*40334",
-      role: "User",
-      status: "Active",
-    },
-    {
-      id: 3,
-      name: "User #3",
-      line_user_id: "Lfjrfkgn(*04Lkfe3#4",
-      role: "User",
-      status: "Customer 1MS",
-    },
-    {
-      id: 4,
-      name: "User #4",
-      line_user_id: "EIRUJMFEoijrt9jORj",
-      role: "Auditor",
-      status: "Inactive",
-    },
-    {
-      id: 5,
-      name: "User #5",
-      line_user_id: "FKI$Ji4(4j54k)OOP3",
-      role: "User",
-      status: "Customer 1Y",
-    },
-  ];
 
   return (
     <Layout title="User Management">
@@ -164,6 +200,8 @@ export const UsersPage = () => {
                     variant="outlined"
                     size="small"
                     sx={{minWidth: 300}}
+                    value={searchQuery}
+                    onChange={handleSearchChange}
                     InputProps={{
                       startAdornment: (
                         <SearchIcon sx={{color: "text.secondary", mr: 1}} />
@@ -175,8 +213,21 @@ export const UsersPage = () => {
                   </Button>
                 </Box>
               </Box>
-
-              <UsersTable mockUsers={mockUsers} />
+              <UsersTable
+                mockUsers={paginatedUsers}
+                order={order}
+                orderBy={orderBy}
+                onRequestSort={handleRequestSort}
+              />
+              <TablePagination
+                rowsPerPageOptions={[25, 50, 100]}
+                component="div"
+                count={filteredUsers.length}
+                rowsPerPage={rowsPerPage}
+                page={page}
+                onPageChange={(event, newPage) => setPage(newPage)}
+                sx={{px: 2, py: 1, borderTop: "1px solid #e0e0e0"}}
+              />
             </CardContent>
           </Card>
         </motion.div>

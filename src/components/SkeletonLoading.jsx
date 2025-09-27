@@ -9,7 +9,7 @@ import {
   Paper,
   Typography,
 } from "@mui/material";
- 
+
 import {motion} from "framer-motion";
 
 // Generic Page Skeleton

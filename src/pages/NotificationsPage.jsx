@@ -98,14 +98,17 @@ export const NotificationsPage = () => {
           animate={{opacity: 1, y: 0}}
           transition={{duration: 0.6}}
         >
-          <Typography variant="h4" fontWeight="bold" gutterBottom>
+          <Typography variant="h6" fontWeight="bold" gutterBottom>
+            Comming Soon...
+          </Typography>
+          {/* <Typography variant="h4" fontWeight="bold" gutterBottom>
             Notifications
           </Typography>
           <Typography variant="body1" color="text.secondary" sx={{mb: 4}}>
             Stay updated with system alerts and activities
-          </Typography>
+          </Typography> */}
 
-          <Card elevation={2} sx={{borderRadius: 3}}>
+          {/* <Card elevation={2} sx={{borderRadius: 3}}>
             <CardContent sx={{p: 0}}>
               {mockNotifications.map((notification, index) => (
                 <Box key={notification.id}>
@@ -150,7 +153,7 @@ export const NotificationsPage = () => {
                 </Box>
               ))}
             </CardContent>
-          </Card>
+          </Card> */}
         </motion.div>
       </Container>
     </Layout>

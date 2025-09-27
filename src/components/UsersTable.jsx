@@ -1,4 +1,6 @@
-import React, {useState} from "react";
+// src/components/UsersTable.jsx
+
+import React from "react";
 import {motion} from "framer-motion";
 import {
   TableContainer,
@@ -16,15 +18,10 @@ import {
 import TableSortLabel from "@mui/material/TableSortLabel";
 import {visuallyHidden} from "@mui/utils";
 import CurrencyExchangeIcon from "@mui/icons-material/CurrencyExchange";
-import {
-  Add as AddIcon,
-  Edit as EditIcon,
-  Delete as DeleteIcon,
-  Search as SearchIcon,
-  FilterList as FilterIcon,
-} from "@mui/icons-material";
+import DeleteIcon from "@mui/icons-material/Delete";
+import EditIcon from "@mui/icons-material/Edit";
 
-function descendingComparator(a, b, orderBy) {
+export function descendingComparator(a, b, orderBy) {
   if (b[orderBy] < a[orderBy]) {
     return -1;
   }
@@ -34,7 +31,7 @@ function descendingComparator(a, b, orderBy) {
   return 0;
 }
 
-function getComparator(order, orderBy) {
+export function getComparator(order, orderBy) {
   return order === "desc"
     ? (a, b) => descendingComparator(a, b, orderBy)
     : (a, b) => -descendingComparator(a, b, orderBy);
@@ -42,14 +39,25 @@ function getComparator(order, orderBy) {
 
 const headCells = [
   {id: "name", numeric: false, disablePadding: true, label: "User"},
+  {id: "line_user_id", numeric: false, disablePadding: false, label: "Line ID"},
   {
-    id: "line_user_id",
+    id: "token_usage",
+    numeric: true,
+    disablePadding: false,
+    label: "Token Usage",
+  },
+  {
+    id: "subscription",
     numeric: false,
     disablePadding: false,
-    label: "Line User ID",
+    label: "Subscription",
   },
-  {id: "role", numeric: false, disablePadding: false, label: "Role"},
-  {id: "status", numeric: false, disablePadding: false, label: "Status"},
+  {
+    id: "created_at",
+    numeric: false,
+    disablePadding: false,
+    label: "Created At",
+  },
   {
     id: "actions",
     numeric: false,
@@ -70,7 +78,7 @@ function EnhancedTableHead({order, orderBy, onRequestSort}) {
         {headCells.map((headCell) => (
           <TableCell
             key={headCell.id}
-            align="center" // Center align text for all headers
+            align="center"
             padding={headCell.disablePadding ? "none" : "normal"}
             sortDirection={
               headCell.sortable === false
@@ -103,74 +111,58 @@ function EnhancedTableHead({order, orderBy, onRequestSort}) {
     </TableHead>
   );
 }
-export default function UsersTable({mockUsers}) {
-  const [order, setOrder] = useState("asc");
-  const [orderBy, setOrderBy] = useState("name");
 
-  const handleRequestSort = (event, property) => {
-    const isAsc = orderBy === property && order === "asc";
-    setOrder(isAsc ? "desc" : "asc");
-    setOrderBy(property);
-  };
-
-  const visibleRows = React.useMemo(
-    () => [...mockUsers].sort(getComparator(order, orderBy)),
-    [order, orderBy, mockUsers]
-  );
-
+// Remove all sorting logic from this component
+export default function UsersTable({mockUsers, order, orderBy, onRequestSort}) {
   return (
     <TableContainer>
       <Table>
         <EnhancedTableHead
           order={order}
           orderBy={orderBy}
-          onRequestSort={handleRequestSort}
+          onRequestSort={onRequestSort}
         />
         <TableBody>
-          {visibleRows.map((user, index) => (
+          {mockUsers.map((user, index) => (
             <motion.tr
               key={user.id}
               component={TableRow}
-              initial={{opacity: 0, y: 20}}
+              initial={{opacity: 0, y: 25}}
               animate={{opacity: 1, y: 0}}
               transition={{duration: 0.4, delay: index * 0.1}}
               sx={{"&:hover": {bgcolor: "#F6F6F6"}}}
             >
               <TableCell>
                 <Box sx={{display: "flex", alignItems: "center", gap: 2}}>
-                  <Avatar sx={{width: 32, height: 32}}>{user.name[0]}</Avatar>
+                  <Avatar src={user.img} sx={{width: 32, height: 32}} />
                   <Typography fontWeight={500}>{user.name}</Typography>
                 </Box>
               </TableCell>
               <TableCell>{user.line_user_id}</TableCell>
+              <TableCell>{user.token_usage}</TableCell>
               <TableCell>
                 <Chip
-                  label={user.role}
+                  label={user.subscription}
                   size="small"
                   sx={{
-                    bgcolor: user.role === "Admin" ? "#A2D5C6" : "#CFFFE2",
+                    bgcolor: user.subscription.includes("Subscribed")
+                      ? "#A2D5C6"
+                      : "#CFFFE2",
                     color: "#000000",
                   }}
                 />
               </TableCell>
-              <TableCell>
-                <Chip
-                  label={user.status}
-                  size="small"
-                  color={
-                    user.status === "Active"
-                      ? "success"
-                      : user.status === "Inactive"
-                      ? "error"
-                      : "warning"
-                  }
-                />
-              </TableCell>
+              <TableCell>{user.created_at}</TableCell>
               <TableCell align="center">
                 <IconButton size="small" sx={{color: "#A2D5C6"}}>
                   <EditIcon />
                 </IconButton>
-                {user.status.includes("Customer") && (
+                {user.subscription.includes("Customer") && (
+                  <IconButton size="small" sx={{color: "#dbd970ff"}}>
+                    <CurrencyExchangeIcon />
+                  </IconButton>
+                )}
+                {user.subscription.includes("Subscribed") && (
                   <IconButton size="small" sx={{color: "#dbd970ff"}}>
                     <CurrencyExchangeIcon />
                   </IconButton>

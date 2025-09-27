@@ -65,17 +65,20 @@ export const AnalyticsPage = () => {
           animate={{opacity: 1, y: 0}}
           transition={{duration: 0.6}}
         >
-          <Box sx={{mb: 4}}>
+          <Typography variant="h6" fontWeight="bold" gutterBottom>
+            Comming Soon...
+          </Typography>
+          {/* <Box sx={{mb: 4}}>
             <Typography variant="h4" fontWeight="bold" gutterBottom>
               Analytics Dashboard
             </Typography>
             <Typography variant="body1" color="text.secondary">
               Track your system performance and user engagement
             </Typography>
-          </Box>
+          </Box> */}
 
           {/* Stats Cards */}
-          <Grid container spacing={3} sx={{mb: 4}}>
+          {/* <Grid container spacing={3} sx={{mb: 4}}>
             {[
               {
                 title: "Total Users",
@@ -133,10 +136,10 @@ export const AnalyticsPage = () => {
                 </motion.div>
               </Grid>
             ))}
-          </Grid>
+          </Grid> */}
 
           {/* Charts Placeholder */}
-          <Grid container spacing={3}>
+          {/* <Grid container spacing={3}>
             <Grid item xs={12} lg={8}>
               <Card elevation={2} sx={{borderRadius: 3}}>
                 <CardContent sx={{p: 3}}>
@@ -183,7 +186,7 @@ export const AnalyticsPage = () => {
                 </CardContent>
               </Card>
             </Grid>
-          </Grid>
+          </Grid> */}
         </motion.div>
       </Container>
     </Layout>

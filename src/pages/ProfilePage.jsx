@@ -65,14 +65,17 @@ export const ProfilePage = () => {
           animate={{opacity: 1, y: 0}}
           transition={{duration: 0.6}}
         >
-          <Typography variant="h4" fontWeight="bold" gutterBottom>
+          <Typography variant="h6" fontWeight="bold" gutterBottom>
+            Comming Soon...
+          </Typography>
+          {/* <Typography variant="h4" fontWeight="bold" gutterBottom>
             My Profile
           </Typography>
           <Typography variant="body1" color="text.secondary" sx={{mb: 4}}>
             Manage your personal information and preferences
-          </Typography>
+          </Typography> */}
 
-          <Card elevation={2} sx={{borderRadius: 3}}>
+          {/* <Card elevation={2} sx={{borderRadius: 3}}>
             <CardContent sx={{p: 4}}>
               <Box sx={{display: "flex", alignItems: "center", gap: 3, mb: 4}}>
                 <Avatar sx={{width: 100, height: 100}}>JD</Avatar>
@@ -162,7 +165,7 @@ export const ProfilePage = () => {
                 <Button variant="outlined">Change Password</Button>
               </Box>
             </CardContent>
-          </Card>
+          </Card> */}
         </motion.div>
       </Container>
     </Layout>

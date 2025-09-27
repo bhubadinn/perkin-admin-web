@@ -91,13 +91,13 @@ const Sidebar = ({open, onToggle, collapsed, onCollapsedToggle}) => {
           path: "/users",
           roles: ["admin"],
         },
-        {
-          key: "users-add",
-          title: "Add User",
-          icon: <PersonAdd />,
-          path: "/users/add",
-          roles: ["admin"],
-        },
+        // {
+        //   key: "users-add",
+        //   title: "Add User",
+        //   icon: <PersonAdd />,
+        //   path: "/users/add",
+        //   roles: ["admin"],
+        // },
       ],
     },
     {
